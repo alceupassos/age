@@ -1,9 +1,6 @@
 
 /// <reference types="jest" />
 
-// Import the matchers to make sure they're included
-import '@testing-library/jest-dom';
-
 declare global {
   namespace jest {
     // Add matchers to both normal and asymmetric matchers
