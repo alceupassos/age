@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 type Language = 'pt' | 'en' | 'fr' | 'es';
@@ -29,6 +28,7 @@ const translations = {
     'nav.metrics': 'Métricas de Saúde',
     'nav.access': 'Controle de Acesso',
     'nav.emergency': 'QR de Emergência',
+    'nav.labexams': 'Exames Laboratoriais',
     'nav.help': 'Central de Ajuda',
     'nav.support': 'Suporte',
     'nav.manage': 'Gerenciar Acesso',
@@ -67,6 +67,7 @@ const translations = {
     'nav.metrics': 'Health Metrics',
     'nav.access': 'Access Control',
     'nav.emergency': 'Emergency QR',
+    'nav.labexams': 'Lab Exams',
     'nav.help': 'Help Center',
     'nav.support': 'Support',
     'nav.manage': 'Manage Access',
@@ -105,6 +106,7 @@ const translations = {
     'nav.metrics': 'Métriques de santé',
     'nav.access': 'Contrôle d\'accès',
     'nav.emergency': 'QR d\'urgence',
+    'nav.labexams': 'Examens de laboratoire',
     'nav.help': 'Centre d\'aide',
     'nav.support': 'Support',
     'nav.manage': 'Gérer l\'accès',
@@ -143,6 +145,7 @@ const translations = {
     'nav.metrics': 'Métricas de salud',
     'nav.access': 'Control de acceso',
     'nav.emergency': 'QR de emergencia',
+    'nav.labexams': 'Exámenes de laboratorio',
     'nav.help': 'Centro de ayuda',
     'nav.support': 'Soporte',
     'nav.manage': 'Gestionar acceso',

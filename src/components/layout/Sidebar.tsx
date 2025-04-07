@@ -16,7 +16,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Key
+  Key,
+  FlaskConical
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -43,6 +44,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { nameKey: 'nav.medications', path: '/medications', icon: <Pill size={20} /> },
     { nameKey: 'nav.appointments', path: '/appointments', icon: <Calendar size={20} /> },
     { nameKey: 'nav.metrics', path: '/metrics', icon: <BarChart3 size={20} /> },
+    { nameKey: 'nav.labexams', path: '/labexams', icon: <FlaskConical size={20} /> },
     { nameKey: 'nav.access', path: '/access', icon: <ShieldCheck size={20} /> },
     { nameKey: 'nav.emergency', path: '/emergency', icon: <QrCode size={20} /> },
   ]);
