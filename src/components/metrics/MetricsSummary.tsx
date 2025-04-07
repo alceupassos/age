@@ -1,6 +1,8 @@
 
+import { Link } from 'react-router-dom';
 import HealthMetric from "@/components/ui/HealthMetric";
-import { Activity, Heart, TrendingDown } from "lucide-react";
+import { Activity, Heart, TrendingDown, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface MetricsSummaryProps {
   // Empty for now, could add props for dynamic data later
@@ -38,8 +40,17 @@ const MetricsSummary = ({}: MetricsSummaryProps) => {
         />
       </div>
       
-      <div className="text-xs text-muted-foreground text-center italic mt-2">
-        * Dados fictícios não reais usado para exemplo de software
+      <div className="flex justify-between items-center mt-4">
+        <div className="text-xs text-muted-foreground italic">
+          * Dados fictícios não reais usado para exemplo de software
+        </div>
+        
+        <Link to="/labexams">
+          <Button variant="outline" size="sm" className="gap-2">
+            <FileText className="h-4 w-4" />
+            Exames laboratoriais
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import Access from "./pages/Access";
 import Metrics from "./pages/Metrics";
 import Appointments from "./pages/Appointments";
 import Emergency from "./pages/Emergency";
+import LabExams from "./pages/LabExams";
 
 // Create placeholder components for routes that don't have dedicated pages yet
 const HelpPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Central de Ajuda</h1><p>Conteúdo da central de ajuda estará disponível em breve.</p></div>;
@@ -41,6 +42,7 @@ const App = () => (
               <Route path="/metrics" element={<Metrics />} />
               <Route path="/access" element={<Access />} />
               <Route path="/emergency" element={<Emergency />} />
+              <Route path="/labexams" element={<LabExams />} />
               <Route path="/help" element={<HelpPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/manage-access" element={<ManageAccessPage />} />

@@ -1,25 +1,34 @@
 
-/// <reference types="jest" />
+// This fixes the TypeScript error for testing-library/jest-dom
+interface CustomMatchers<R = unknown> {
+  toBeInTheDocument(): R;
+  toBeVisible(): R;
+  toBeEmpty(): R;
+  toBeDisabled(): R;
+  toBeEnabled(): R;
+  toBeInvalid(): R;
+  toBeRequired(): R;
+  toBeChecked(): R;
+  toBePartiallyChecked(): R;
+  toHaveAttribute(attr: string, value?: string): R;
+  toHaveClass(...classNames: string[]): R;
+  toHaveStyle(css: Record<string, any>): R;
+  toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;
+  toHaveValue(value?: string | string[] | number): R;
+  toHaveFocus(): R;
+  toContainElement(element: HTMLElement | null): R;
+  toContainHTML(htmlText: string): R;
+  toBeEmptyDOMElement(): R;
+  toHaveDescription(text?: string | RegExp): R;
+}
 
-declare namespace jest {
-  interface Matchers<R, T = any> {
-    toBeInTheDocument(): R;
-    toHaveTextContent(text: string | RegExp): R;
-    toHaveClass(className: string): R;
-    toBeVisible(): R;
-    toBeDisabled(): R;
-    toBeEnabled(): R;
-    toBeChecked(): R;
-    toHaveAttribute(attr: string, value?: string | RegExp): R;
-    toHaveValue(value: string | string[] | number | null): R;
-    toBeEmpty(): R;
-    toHaveStyle(css: Record<string, any>): R;
-    toContainElement(element: HTMLElement | null): R;
-    toContainHTML(html: string): R;
-    toHaveFocus(): R;
-    toHaveFormValues(values: Record<string, any>): R;
+declare global {
+  namespace jest {
+    interface Expect extends CustomMatchers {}
+    interface Matchers<R> extends CustomMatchers<R> {}
+    interface InverseAsymmetricMatchers extends CustomMatchers {}
   }
 }
 
-// Make this file a module to correctly scope the declarations
+// Make this file a module
 export {};
