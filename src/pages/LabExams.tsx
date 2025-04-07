@@ -11,6 +11,7 @@ import LabExamOCR from '@/components/labexams/LabExamOCR';
 import ExamResults from '@/components/labexams/ExamResults';
 import RecentExams from '@/components/labexams/RecentExams';
 import ExamInsights from '@/components/labexams/ExamInsights';
+import BloodExamGuide from '@/components/labexams/BloodExamGuide';
 import { LabExam } from '@/components/labexams/types';
 import { sampleLabExams } from '@/data/labExamsData';
 
@@ -20,6 +21,7 @@ const LabExamsPage = () => {
   const [currentExam, setCurrentExam] = useState<LabExam | null>(null);
   const [showOCRUpload, setShowOCRUpload] = useState(false);
   const [exams, setExams] = useState<LabExam[]>(sampleLabExams);
+  const [showGuide, setShowGuide] = useState(false);
 
   const filteredExams = exams.filter(exam => 
     exam.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -51,6 +53,14 @@ const LabExamsPage = () => {
           
           <div className="flex flex-col sm:flex-row gap-2">
             <Button 
+              variant={showGuide ? "default" : "outline"}
+              className="gap-2" 
+              onClick={() => setShowGuide(!showGuide)}
+            >
+              <Info size={16} />
+              Guia de Exames
+            </Button>
+            <Button 
               className="gap-2" 
               onClick={() => setShowOCRUpload(true)}
             >
@@ -64,6 +74,20 @@ const LabExamsPage = () => {
           </div>
         </div>
 
+        {showGuide && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Guia Educativo de Exames Sanguíneos</CardTitle>
+              <CardDescription>
+                Entenda os principais parâmetros de um hemograma completo
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <BloodExamGuide />
+            </CardContent>
+          </Card>
+        )}
+        
         {showOCRUpload ? (
           <Card>
             <CardHeader>
