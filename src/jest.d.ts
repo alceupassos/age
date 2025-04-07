@@ -1,28 +1,10 @@
 
 /// <reference types="jest" />
+/// <reference types="@testing-library/jest-dom" />
 
 declare global {
   namespace jest {
-    // Add matchers to both normal and asymmetric matchers
-    interface AsymmetricMatchers {
-      toBeInTheDocument(): void;
-      toHaveTextContent(text: string | RegExp): void;
-      toHaveClass(className: string): void;
-      toBeVisible(): void;
-      toBeDisabled(): void;
-      toBeEnabled(): void;
-      toBeChecked(): void;
-      toHaveAttribute(attr: string, value?: string | RegExp): void;
-      toHaveValue(value: string | string[] | number | null): void;
-      toBeEmpty(): void;
-      toHaveStyle(css: Record<string, any>): void;
-      toContainElement(element: HTMLElement | null): void;
-      toContainHTML(html: string): void;
-      toHaveFocus(): void;
-      toHaveFormValues(values: Record<string, any>): void;
-    }
-
-    interface Matchers<R, T = any> {
+    interface Matchers<R = unknown> {
       toBeInTheDocument(): R;
       toHaveTextContent(text: string | RegExp): R;
       toHaveClass(className: string): R;
