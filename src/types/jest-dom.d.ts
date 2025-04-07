@@ -21,4 +21,5 @@ declare namespace jest {
   }
 }
 
+// Make this file a module to correctly scope the declarations
 export {};
