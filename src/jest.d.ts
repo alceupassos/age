@@ -1,10 +1,9 @@
 
 /// <reference types="jest" />
-// This triple-slash directive now refers to the types bundled with @testing-library/jest-dom v6.x
 /// <reference types="@testing-library/jest-dom" />
 
-// Manual declarations of jest-dom matchers are no longer necessary here,
-// as @testing-library/jest-dom v6 and its import in setupTests.ts handle this.
-
-export {}; // This line ensures the file is treated as a module.
+// By removing 'export {}', this file's contents are treated as global.
+// The triple-slash reference to @testing-library/jest-dom should then
+// correctly augment the global jest namespace, making matchers like
+// .toBeInTheDocument() known to TypeScript across your test files.
 
