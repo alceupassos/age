@@ -4,3 +4,6 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+// This ensures that custom jest matchers like toBeInTheDocument() are available
+// The global type augmentation for this is in src/jest.d.ts

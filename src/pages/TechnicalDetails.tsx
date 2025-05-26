@@ -1,5 +1,6 @@
 
 import MainLayout from '@/components/layout/MainLayout';
+import TechnicalDetailsHeader from '@/components/technical-details/TechnicalDetailsHeader';
 import FrontendDetailsCard from '@/components/technical-details/FrontendDetailsCard';
 import BackendDetailsCard from '@/components/technical-details/BackendDetailsCard';
 
@@ -244,16 +245,14 @@ Criptografia
 •	TLS 1.3 para dados em trânsito
 •	Elliptic curve signatures (secp256k1)
 •	Zero-knowledge proofs para privacy preserving queries
-`; // Ensuring the closing backtick and semicolon are correctly placed here
+`;
 
   return (
     <MainLayout>
       <div className="space-y-6">
-        <h1 className="text-3xl font-bold tracking-tight">Detalhes Técnicos</h1>
-        
+        <TechnicalDetailsHeader />
         <FrontendDetailsCard description={frontendDescription} />
         <BackendDetailsCard description={backendDescription} />
-        
       </div>
     </MainLayout>
   );
