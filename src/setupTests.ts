@@ -6,4 +6,5 @@
 import '@testing-library/jest-dom';
 
 // This ensures that custom jest matchers like toBeInTheDocument() are available
-// The global type augmentation for this is in src/jest.d.ts
+// when using @testing-library/jest-dom.
+
