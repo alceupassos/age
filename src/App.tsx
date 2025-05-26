@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,12 +17,14 @@ import Appointments from "./pages/Appointments";
 import Emergency from "./pages/Emergency";
 import LabExams from "./pages/LabExams";
 import TechnicalDetailsPage from "./pages/TechnicalDetails";
+import GeneticDataPage from "./pages/GeneticData"; // Import GeneticDataPage
+import SettingsPage from "./pages/SettingsPage"; // Import SettingsPage
 
 // Create placeholder components for routes that don't have dedicated pages yet
 const HelpPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Central de Ajuda</h1><p>Conteúdo da central de ajuda estará disponível em breve.</p></div>;
 const SupportPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Suporte</h1><p>Conteúdo da página de suporte estará disponível em breve.</p></div>;
 const ManageAccessPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Gerenciar Acesso</h1><p>Conteúdo da página de gerenciamento de acesso estará disponível em breve.</p></div>;
-const SettingsPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Configurações</h1><p>Conteúdo da página de configurações estará disponível em breve.</p></div>;
+// const SettingsPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Configurações</h1><p>Conteúdo da página de configurações estará disponível em breve.</p></div>; // Placeholder removed
 
 const queryClient = new QueryClient();
 
@@ -44,10 +47,11 @@ const App = () => (
               <Route path="/access" element={<Access />} />
               <Route path="/emergency" element={<Emergency />} />
               <Route path="/labexams" element={<LabExams />} />
+              <Route path="/genetic-data" element={<GeneticDataPage />} /> {/* Add GeneticDataPage route */}
               <Route path="/help" element={<HelpPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/manage-access" element={<ManageAccessPage />} />
-              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/settings" element={<SettingsPage />} /> {/* Use imported SettingsPage */}
               <Route path="/technical-details" element={<TechnicalDetailsPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
@@ -60,3 +64,4 @@ const App = () => (
 );
 
 export default App;
+

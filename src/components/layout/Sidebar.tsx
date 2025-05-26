@@ -17,7 +17,8 @@ import {
   ChevronRight,
   Key,
   FlaskConical,
-  TerminalSquare
+  TerminalSquare,
+  Dna // Added Dna icon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -28,10 +29,11 @@ interface SidebarProps {
 }
 
 interface NavItem {
-  nameKey: string; // This can be a translation key or a direct string
+  nameKey: string; 
   path: string;
   icon: JSX.Element;
-  isLiteral?: boolean; // Flag to indicate if nameKey is a literal string
+  isLiteral?: boolean; 
+  isNew?: boolean; // Flag for special styling if needed
 }
 
 const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
@@ -46,6 +48,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { nameKey: 'nav.appointments', path: '/appointments', icon: <Calendar size={20} /> },
     { nameKey: 'nav.metrics', path: '/metrics', icon: <BarChart3 size={20} /> },
     { nameKey: 'nav.labexams', path: '/labexams', icon: <FlaskConical size={20} /> },
+    { nameKey: 'Dados Genéticos', path: '/genetic-data', icon: <Dna size={20} className="text-purple-500"/>, isLiteral: true, isNew: true }, // New Genetic Data item
     { nameKey: 'nav.access', path: '/access', icon: <ShieldCheck size={20} /> },
     { nameKey: 'nav.emergency', path: '/emergency', icon: <QrCode size={20} /> },
   ]);
@@ -54,7 +57,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { nameKey: 'nav.help', path: '/help', icon: <HelpCircle size={20} /> },
     { nameKey: 'nav.support', path: '/support', icon: <MessageCircleQuestion size={20} /> },
     { nameKey: 'nav.manage', path: '/manage-access', icon: <Key size={20} /> },
-    { nameKey: 'Técnica', path: '/technical-details', icon: <TerminalSquare size={20} />, isLiteral: true }, // New item
+    { nameKey: 'Técnica', path: '/technical-details', icon: <TerminalSquare size={20} />, isLiteral: true },
   ];
 
   return (
@@ -93,20 +96,22 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
                   "flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group transition-colors",
                   location.pathname === item.path
                     ? "bg-primary/10 text-primary"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800",
+                  item.isNew && location.pathname !== item.path ? "text-purple-600 dark:text-purple-400" : "" // Special color for new item if not active
                 )}
               >
                 <span className={cn(
                   "inline-flex items-center justify-center mr-3",
                   location.pathname === item.path
-                    ? "text-primary"
-                    : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300"
+                    ? "text-primary" // Active icon color
+                    : item.isNew ? "text-purple-500" : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300" // New item icon color or default
                 )}>
                   {item.icon}
                 </span>
-                <span className="truncate">{item.isLiteral ? item.nameKey : t(item.nameKey)}</span>
+                <span className={cn("truncate", item.isNew && location.pathname !== item.path ? "font-semibold" : "")}>
+                  {item.isLiteral ? item.nameKey : t(item.nameKey)}
+                </span>
                 
-                {/* Active indicator */}
                 {location.pathname === item.path && (
                   <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></span>
                 )}
