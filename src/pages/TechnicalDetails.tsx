@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const TechnicalDetailsPage = () => {
   const frontendDescription = `A aplicação frontend é construída utilizando React com TypeScript, aproveitando o Vite para um desenvolvimento rápido e eficiente. A estilização é gerenciada com Tailwind CSS e componentes pré-construídos da biblioteca shadcn/ui, garantindo uma interface de usuário moderna e responsiva. O gerenciamento de estado global é facilitado pelo React Context API para temas e internacionalização (i18n), enquanto o TanStack Query (React Query) é empregado para data fetching, caching e sincronização de estado com o backend. A navegação é tratada pelo React Router DOM. A estrutura do projeto segue uma organização modular com componentes reutilizáveis e páginas dedicadas para cada funcionalidade principal.`;
 
-  const backendDescription = \`
+  const backendDescription = `
 Arquitetura Técnica do Backend - Carteira Digital de Saúde
 
 Visão Geral da Arquitetura
@@ -284,3 +284,4 @@ Criptografia
 };
 
 export default TechnicalDetailsPage;
+
