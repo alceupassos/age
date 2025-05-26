@@ -1,27 +1,10 @@
 
 /// <reference types="jest" />
+// This triple-slash directive now refers to the types bundled with @testing-library/jest-dom v6.x
 /// <reference types="@testing-library/jest-dom" />
 
-declare global {
-  namespace jest {
-    interface Matchers<R = unknown> {
-      toBeInTheDocument(): R;
-      toHaveTextContent(text: string | RegExp): R;
-      toHaveClass(className: string): R;
-      toBeVisible(): R;
-      toBeDisabled(): R;
-      toBeEnabled(): R;
-      toBeChecked(): R;
-      toHaveAttribute(attr: string, value?: string | RegExp): R;
-      toHaveValue(value: string | string[] | number | null): R;
-      toBeEmpty(): R;
-      toHaveStyle(css: Record<string, any>): R;
-      toContainElement(element: HTMLElement | null): R;
-      toContainHTML(html: string): R;
-      toHaveFocus(): R;
-      toHaveFormValues(values: Record<string, any>): R;
-    }
-  }
-}
+// Manual declarations of jest-dom matchers are no longer necessary here,
+// as @testing-library/jest-dom v6 and its import in setupTests.ts handle this.
 
-export {};
+export {}; // This line ensures the file is treated as a module.
+
