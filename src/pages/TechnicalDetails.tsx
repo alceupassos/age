@@ -1,7 +1,7 @@
 
 import MainLayout from '@/components/layout/MainLayout';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import FrontendDetailsCard from '@/components/technical-details/FrontendDetailsCard';
+import BackendDetailsCard from '@/components/technical-details/BackendDetailsCard';
 
 const TechnicalDetailsPage = () => {
   const frontendDescription = `A aplicação frontend é construída utilizando React com TypeScript, aproveitando o Vite para um desenvolvimento rápido e eficiente. A estilização é gerenciada com Tailwind CSS e componentes pré-construídos da biblioteca shadcn/ui, garantindo uma interface de usuário moderna e responsiva. O gerenciamento de estado global é facilitado pelo React Context API para temas e internacionalização (i18n), enquanto o TanStack Query (React Query) é empregado para data fetching, caching e sincronização de estado com o backend. A navegação é tratada pelo React Router DOM. A estrutura do projeto segue uma organização modular com componentes reutilizáveis e páginas dedicadas para cada funcionalidade principal.`;
@@ -251,33 +251,9 @@ Criptografia
       <div className="space-y-6">
         <h1 className="text-3xl font-bold tracking-tight">Detalhes Técnicos</h1>
         
-        <Card>
-          <CardHeader>
-            <CardTitle>Arquitetura Frontend</CardTitle>
-            <CardDescription>
-              Visão geral da stack tecnológica e padrões utilizados no desenvolvimento do frontend.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="whitespace-pre-line">{frontendDescription}</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Arquitetura Backend</CardTitle>
-            <CardDescription>
-              Descrição detalhada da infraestrutura e componentes do backend.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ScrollArea className="h-[600px] w-full rounded-md border p-4">
-              <pre className="text-sm whitespace-pre-wrap break-words">
-                {backendDescription}
-              </pre>
-            </ScrollArea>
-          </CardContent>
-        </Card>
+        <FrontendDetailsCard description={frontendDescription} />
+        <BackendDetailsCard description={backendDescription} />
+        
       </div>
     </MainLayout>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Bell,
@@ -29,10 +29,8 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
   };
 
   // Ensure theme is set on mount based on existing class
-  useState(() => {
-    if (document.documentElement.classList.contains('dark')) {
-      setIsDark(true);
-    }
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'));
   }, []);
 
   return (
