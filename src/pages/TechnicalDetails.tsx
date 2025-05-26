@@ -244,7 +244,7 @@ Criptografia
 •	TLS 1.3 para dados em trânsito
 •	Elliptic curve signatures (secp256k1)
 •	Zero-knowledge proofs para privacy preserving queries
-\`;
+`; // Ensuring the closing backtick and semicolon are correctly placed here
 
   return (
     <MainLayout>
@@ -284,4 +284,3 @@ Criptografia
 };
 
 export default TechnicalDetailsPage;
-
