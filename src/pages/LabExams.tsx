@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { UploadCloud, FileText, Search, Filter, AlertTriangle, Info, Camera } from 'lucide-react';
 import MainLayout from '@/components/layout/MainLayout';
@@ -21,7 +20,7 @@ const LabExamsPage = () => {
   const [currentExam, setCurrentExam] = useState<LabExam | null>(null);
   const [showOCRUpload, setShowOCRUpload] = useState(false);
   const [exams, setExams] = useState<LabExam[]>(sampleLabExams);
-  const [showGuide, setShowGuide] = useState(false);
+  const [showGuide, setShowGuide] = useState(true);
 
   const filteredExams = exams.filter(exam => 
     exam.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
