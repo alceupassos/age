@@ -2,7 +2,29 @@
 /// <reference types="jest" />
 /// <reference types="@testing-library/jest-dom" />
 
-// This file's contents are treated as global.
-// The triple-slash reference to @testing-library/jest-dom correctly
-// augments the global jest namespace, making matchers like
-// .toBeInTheDocument() known to TypeScript across your test files.
+// This file augments the Jest namespace with custom matchers from testing-library
+// This ensures that TypeScript recognizes matchers like .toBeInTheDocument()
+
+interface CustomMatchers<R = unknown> {
+  toBeInTheDocument(): R;
+  toHaveTextContent(text: string | RegExp): R;
+  toBeVisible(): R;
+  toBeChecked(): R;
+  toHaveClass(className: string): R;
+  toHaveValue(value: string | string[] | number | null): R;
+  toBeDisabled(): R;
+  toBeEnabled(): R;
+  toHaveAttribute(attr: string, value?: string): R;
+  toBeRequired(): R;
+}
+
+declare global {
+  namespace jest {
+    interface Expect extends CustomMatchers {}
+    interface Matchers<R> extends CustomMatchers<R> {}
+    interface InverseAsymmetricMatchers extends CustomMatchers {}
+  }
+}
+
+// This empty export is needed to make this file a module
+export {};
