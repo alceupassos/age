@@ -16,6 +16,15 @@ interface CustomMatchers<R = unknown> {
   toBeEnabled(): R;
   toHaveAttribute(attr: string, value?: string): R;
   toBeRequired(): R;
+  toHaveStyle(css: Record<string, any>): R;
+  toBeEmpty(): R;
+  toBeEmptyDOMElement(): R;
+  toBeInvalid(): R;
+  toBeValid(): R;
+  toHaveFocus(): R;
+  toContainElement(element: HTMLElement | null): R;
+  toContainHTML(html: string): R;
+  toBePartiallyChecked(): R;
 }
 
 declare global {
