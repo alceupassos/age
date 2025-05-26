@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -17,7 +16,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Key,
-  FlaskConical
+  FlaskConical,
+  TerminalSquare
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -28,9 +28,10 @@ interface SidebarProps {
 }
 
 interface NavItem {
-  nameKey: string;
+  nameKey: string; // This can be a translation key or a direct string
   path: string;
   icon: JSX.Element;
+  isLiteral?: boolean; // Flag to indicate if nameKey is a literal string
 }
 
 const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
@@ -53,6 +54,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { nameKey: 'nav.help', path: '/help', icon: <HelpCircle size={20} /> },
     { nameKey: 'nav.support', path: '/support', icon: <MessageCircleQuestion size={20} /> },
     { nameKey: 'nav.manage', path: '/manage-access', icon: <Key size={20} /> },
+    { nameKey: 'Técnica', path: '/technical-details', icon: <TerminalSquare size={20} />, isLiteral: true }, // New item
   ];
 
   return (
@@ -102,7 +104,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
                 )}>
                   {item.icon}
                 </span>
-                <span className="truncate">{t(item.nameKey)}</span>
+                <span className="truncate">{item.isLiteral ? item.nameKey : t(item.nameKey)}</span>
                 
                 {/* Active indicator */}
                 {location.pathname === item.path && (
@@ -150,7 +152,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
                 )}>
                   {item.icon}
                 </span>
-                <span className="truncate">{t(item.nameKey)}</span>
+                <span className="truncate">{item.isLiteral ? item.nameKey : t(item.nameKey)}</span>
               </Link>
             ))}
             

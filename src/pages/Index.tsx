@@ -29,10 +29,10 @@ const Index = () => {
       <div className="absolute top-6 left-6 z-10 flex items-center">
         <img 
           src="/lovable-uploads/f328f86f-9e20-428c-b571-91f861610d33.png" 
-          alt="MedChain Logo" 
+          alt="MedWallet Logo" 
           className="h-12 w-auto"
         />
-        <span className="ml-2 text-xl font-bold text-white">MedChain</span>
+        <span className="ml-2 text-xl font-bold text-white">MedWallet</span>
       </div>
       
       <div className="absolute top-6 right-6 z-10">

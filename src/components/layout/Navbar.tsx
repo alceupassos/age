@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -17,12 +16,24 @@ interface NavbarProps {
 }
 
 const Navbar = ({ toggleSidebar }: NavbarProps) => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(document.documentElement.classList.contains('dark'));
   
   const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    if (newIsDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
+
+  // Ensure theme is set on mount based on existing class
+  useState(() => {
+    if (document.documentElement.classList.contains('dark')) {
+      setIsDark(true);
+    }
+  }, []);
 
   return (
     <header className="fixed w-full h-16 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4">
@@ -40,11 +51,11 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
           <Link to="/dashboard" className="flex items-center space-x-2">
             <img 
               src="/lovable-uploads/f328f86f-9e20-428c-b571-91f861610d33.png" 
-              alt="MedChain Logo" 
+              alt="MedWallet Logo" 
               className="h-10 w-auto"
             />
             <span className="hidden md:inline-block text-xl font-bold text-primary">
-              MedChain
+              MedWallet
             </span>
           </Link>
         </div>
@@ -93,7 +104,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
             type="button"
             className="ml-2 flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
           >
-            JS
+            JS 
           </button>
         </div>
       </div>
