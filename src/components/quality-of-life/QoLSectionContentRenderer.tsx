@@ -4,7 +4,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Info, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import QoLSourceInfoSection from './QoLSourceInfoSection'; // Import the new component
+import QoLSourceInfoSection from './QoLSourceInfoSection';
+import QoLExampleImplementationSection from './QoLExampleImplementationSection';
 
 // Define types for data passed to this component
 interface QoLSection {
@@ -330,6 +331,9 @@ const QoLSectionContentRenderer: React.FC<QoLSectionContentRendererProps> = ({
     
     case 'source': // New case for the "Fonte" section
       return <QoLSourceInfoSection section={currentSectionInfo} />;
+
+    case 'exampleImplementation': // Novo case para "Exemplo de Implementação"
+      return <QoLExampleImplementationSection section={currentSectionInfo} />;
 
     default:
       return (

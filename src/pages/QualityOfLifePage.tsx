@@ -3,7 +3,7 @@ import MainLayout from '@/components/layout/MainLayout';
 import { TooltipProvider } from "@/components/ui/tooltip"; 
 import { 
   Smile, TrendingUp, TrendingDown, Clock, Zap, Activity, UserCheck, Users, Wind, Brain, Briefcase, FileText, BarChart3, 
-  Meh, Frown, Minus, ArrowRight, ArrowUp, ArrowDown, Lightbulb, MessageSquare, Info, CheckCircle, AlertTriangle, ShieldCheck, Home, Award, DollarSign, GitCompareArrows, BookOpen, BarChartHorizontal, PieChart, LineChart
+  Meh, Frown, Minus, ArrowRight, ArrowUp, ArrowDown, Lightbulb, MessageSquare, Info, CheckCircle, AlertTriangle, ShieldCheck, Home, Award, DollarSign, GitCompareArrows, BookOpen, PieChart, LineChart, MessageCircle
 } from 'lucide-react';
 
 // Import new components
@@ -36,6 +36,7 @@ const qolSections = [
   { id: 'insights', name: 'Insights IA', icon: <Lightbulb className="h-5 w-5" />, tooltip: "Análises e sugestões da IA." },
   { id: 'history', name: 'Histórico e Relatórios', icon: <FileText className="h-5 w-5" />, tooltip: "Seu histórico de qualidade de vida." },
   { id: 'source', name: 'Fonte', icon: <BookOpen className="h-5 w-5" />, tooltip: "Informações sobre os instrumentos e metodologia utilizados no Índice de Qualidade de Vida." },
+  { id: 'exampleImplementation', name: 'Exemplo de Implementação', icon: <MessageCircle className="h-5 w-5" />, tooltip: "Exemplos de como um Agente IA no WhatsApp coletaria informações para os índices." },
 ];
 
 const domainData = [
