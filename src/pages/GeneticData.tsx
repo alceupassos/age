@@ -2,6 +2,17 @@
 import MainLayout from '@/components/layout/MainLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Dna, BarChart2, PieChart, Table, Users, Network, HelpCircle, FileText, Sigma } from 'lucide-react';
+import ManhattanPlot from '@/components/genetics/ManhattanPlot';
+import GeneticInfographic from '@/components/genetics/GeneticInfographic';
+import ConceptualMap from '@/components/genetics/ConceptualMap';
+import { 
+  manhattanPlotData, 
+  alleleFrequencyData, 
+  riskScoreData, 
+  genotypeData,
+  conceptualMapNodes,
+  conceptualMapEdges
+} from '@/components/genetics/SampleData';
 
 const GeneticDataPage = () => {
   const reports = [
@@ -58,9 +69,55 @@ const GeneticDataPage = () => {
   ];
 
   const additionalVisualizations = [
-    { title: "Gráficos de Manhattan", description: "Utilizados para mostrar associações entre variantes genéticas e doenças específicas, destacando as mais significativas.", icon: <BarChart2 className="mr-2 h-4 w-4 text-blue-500" /> },
-    { title: "Infográficos Educativos", description: "Representações visuais que explicam conceitos genéticos complexos de maneira simplificada, como a diferença entre genótipo e fenótipo.", icon: <Sigma className="mr-2 h-4 w-4 text-blue-500" /> },
-    { title: "Mapas Conceituais", description: "Diagramas que organizam e relacionam informações genéticas, facilitando a compreensão de como diferentes genes interagem.", sources: ["Wikipédia"], icon: <Network className="mr-2 h-4 w-4 text-blue-500" /> }
+    { 
+      title: "Gráficos de Manhattan", 
+      description: "Utilizados para mostrar associações entre variantes genéticas e doenças específicas, destacando as mais significativas.", 
+      icon: <BarChart2 className="mr-2 h-4 w-4 text-blue-500" />,
+      component: <ManhattanPlot 
+                   title="Associação de Variantes Genéticas com Doenças" 
+                   data={manhattanPlotData} 
+                 />
+    },
+    { 
+      title: "Infográficos Educativos", 
+      description: "Representações visuais que explicam conceitos genéticos complexos de maneira simplificada, como a diferença entre genótipo e fenótipo.",
+      icon: <Sigma className="mr-2 h-4 w-4 text-blue-500" />,
+      components: [
+        <GeneticInfographic 
+          key="genotype-phenotype"
+          title="Diferença entre Genótipo e Fenótipo" 
+          description="O genótipo é o conjunto de genes de um organismo, enquanto o fenótipo são as características observáveis resultantes da expressão desses genes e da influência do ambiente."
+          data={genotypeData}
+          type="genotype"
+        />,
+        <GeneticInfographic
+          key="allele-frequency"
+          title="Frequência Alélica na População"
+          description="Distribuição dos diferentes alelos (variantes) de um gene na população geral."
+          data={alleleFrequencyData}
+          type="allele"
+        />,
+        <GeneticInfographic
+          key="risk-score"
+          title="Escores de Risco Genético"
+          description="Impacto de variantes genéticas específicas no risco relativo para uma condição."
+          data={riskScoreData}
+          type="risk"
+        />
+      ]
+    },
+    { 
+      title: "Mapas Conceituais", 
+      description: "Diagramas que organizam e relacionam informações genéticas, facilitando a compreensão de como diferentes genes interagem.", 
+      sources: ["Wikipédia"], 
+      icon: <Network className="mr-2 h-4 w-4 text-blue-500" />,
+      component: <ConceptualMap
+                   title="Interações de Genes Relacionados ao Câncer de Mama"
+                   description="Este mapa mostra como os genes BRCA1, BRCA2 e TP53 interagem com vários processos celulares e estão associados ao desenvolvimento de câncer."
+                   nodes={conceptualMapNodes}
+                   edges={conceptualMapEdges}
+                 />
+    }
   ];
 
   return (
@@ -89,7 +146,7 @@ const GeneticDataPage = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm text-gray-700 dark:text-gray-300">Gráficos Sugeridos:</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{report.graphs} <em className="text-xs block">(Visualização do gráfico aqui)</em></p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{report.graphs}</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm text-gray-700 dark:text-gray-300">Explicações:</h4>
@@ -108,7 +165,7 @@ const GeneticDataPage = () => {
 
         <section>
           <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Visualizações e Explicações Adicionais</h2>
-          <div className="space-y-4">
+          <div className="space-y-6">
             {additionalVisualizations.map((viz, index) => (
                <Card key={index}>
                 <CardHeader>
@@ -116,9 +173,21 @@ const GeneticDataPage = () => {
                     {viz.icon}
                     {viz.title}
                   </CardTitle>
+                  <CardDescription>
+                    {viz.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{viz.description}</p>
+                  {viz.component && viz.component}
+                  {viz.components && (
+                    <div className="space-y-8">
+                      {viz.components.map((component, idx) => (
+                        <div key={idx} className="mb-6">
+                          {component}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {viz.sources && (
                     <div className="text-xs text-gray-500 dark:text-gray-500 pt-2 mt-2 border-t border-gray-200 dark:border-gray-700">
                       Fontes: {viz.sources.join(', ')}
@@ -135,4 +204,3 @@ const GeneticDataPage = () => {
 };
 
 export default GeneticDataPage;
-
