@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -142,7 +142,7 @@ const QualityOfLifePage = () => {
           <Card className="animate-fade-in">
             <CardHeader>
               <CardTitle className="capitalize flex items-center">
-                {sectionDetails?.icon}
+                {sectionDetails?.icon && React.cloneElement(sectionDetails.icon, { className: "h-5 w-5 mr-3" })}
                 {sectionDetails?.name}
               </CardTitle>
               <CardDescription>Conteúdo detalhado e gráficos para {sectionDetails?.name}.</CardDescription>
@@ -166,11 +166,11 @@ const QualityOfLifePage = () => {
             <Button
               key={section.id}
               variant={activeSection === section.id ? "secondary" : "ghost"}
-              className="w-full justify-start text-base py-3 h-auto" // text-base py-3 h-auto
+              className="w-full justify-start text-base py-3 h-auto" 
               onClick={() => setActiveSection(section.id)}
             >
-              {React.cloneElement(section.icon, { className: "h-5 w-5 mr-3 flex-shrink-0" })} {/* Ensure icon styles */}
-              <span className="truncate">{section.name}</span> {/* Truncate long names */}
+              {React.cloneElement(section.icon, { className: "h-5 w-5 mr-3 flex-shrink-0" })}
+              <span className="truncate">{section.name}</span>
             </Button>
           ))}
            {/* Placeholder for Histórico e Relatórios Button */}
