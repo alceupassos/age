@@ -1,8 +1,6 @@
-
 import React, { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
-// Removed Card, CardContent etc from here as they are in child components. Progress, Badge also moved.
-import { TooltipProvider } from "@/components/ui/tooltip"; // Keep this at top level for context
+import { TooltipProvider } from "@/components/ui/tooltip"; 
 import { 
   Smile, TrendingUp, TrendingDown, Clock, Zap, Activity, UserCheck, Users, Wind, Brain, Briefcase, FileText, BarChart3, 
   Meh, Frown, Minus, ArrowRight, ArrowUp, ArrowDown, Lightbulb, MessageSquare, Info, CheckCircle, AlertTriangle, ShieldCheck, Home, Award, DollarSign, GitCompareArrows, BookOpen, BarChartHorizontal, PieChart, LineChart
@@ -16,7 +14,6 @@ import QoLObjectiveDataGrid from '@/components/quality-of-life/QoLObjectiveDataG
 import QoLAIInsightsGrid from '@/components/quality-of-life/QoLAIInsightsGrid';
 import QoLSectionContentRenderer from '@/components/quality-of-life/QoLSectionContentRenderer';
 import QoLInternalSidebar from '@/components/quality-of-life/QoLInternalSidebar';
-
 
 // Mock data remains here or could be moved to a data/qolData.ts file
 const eq5dVASScore = 82; 
@@ -38,6 +35,7 @@ const qolSections = [
   { id: 'objectiveData', name: 'Dados Objetivos', icon: <PieChart className="h-5 w-5" />, tooltip: "Dados coletados por wearables e apps." },
   { id: 'insights', name: 'Insights IA', icon: <Lightbulb className="h-5 w-5" />, tooltip: "Análises e sugestões da IA." },
   { id: 'history', name: 'Histórico e Relatórios', icon: <FileText className="h-5 w-5" />, tooltip: "Seu histórico de qualidade de vida." },
+  { id: 'source', name: 'Fonte', icon: <BookOpen className="h-5 w-5" />, tooltip: "Informações sobre os instrumentos e metodologia utilizados no Índice de Qualidade de Vida." },
 ];
 
 const domainData = [

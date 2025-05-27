@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Info, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import QoLSourceInfoSection from './QoLSourceInfoSection'; // Import the new component
 
 // Define types for data passed to this component
 interface QoLSection {
@@ -327,6 +327,9 @@ const QoLSectionContentRenderer: React.FC<QoLSectionContentRendererProps> = ({
         </Card>
       );
     }
+    
+    case 'source': // New case for the "Fonte" section
+      return <QoLSourceInfoSection section={currentSectionInfo} />;
 
     default:
       return (
