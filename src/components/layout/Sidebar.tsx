@@ -1,6 +1,5 @@
-
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, User, FileText, Pill, Calendar, BarChart2, Microscope, Smile, Dna, KeyRound, ShieldAlert, Settings, Info, QrCode } from 'lucide-react'; // Removido HelpCircle e LifeBuoy não é usado
+import { LayoutDashboard, User, FileText, Pill, Calendar, BarChart2, Microscope, Smile, Dna, KeyRound, ShieldAlert, Settings, Info, QrCode, Video } from 'lucide-react'; // Adicionado Video
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -12,17 +11,42 @@ interface SidebarItemProps {
   onClick?: () => void;
 }
 
-const SidebarItem = ({ to, icon, label, currentPath, onClick }: SidebarItemProps) => (
-  <Link to={to} onClick={onClick}>
-    <Button
-      variant={currentPath === to ? 'secondary' : 'ghost'}
-      className="w-full justify-start text-base py-3 h-auto"
-    >
-      {icon}
-      {label}
-    </Button>
-  </Link>
-);
+const SidebarItem = ({ to, icon, label, currentPath, onClick }: SidebarItemProps) => {
+  const isExternal = to.startsWith('http');
+
+  if (isExternal) {
+    return (
+      <a
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClick} // Permite que o onClick (ex: fechar sidebar no mobile) ainda funcione
+        className="block" // Garante que o link <a> ocupe o espaço do botão
+      >
+        <Button
+          variant={'ghost'} // Links externos geralmente não têm estado "ativo" da mesma forma
+          className="w-full justify-start text-base py-3 h-auto"
+        >
+          {icon}
+          {label}
+        </Button>
+      </a>
+    );
+  }
+
+  // Link interno
+  return (
+    <Link to={to} onClick={onClick}>
+      <Button
+        variant={currentPath === to ? 'secondary' : 'ghost'}
+        className="w-full justify-start text-base py-3 h-auto"
+      >
+        {icon}
+        {label}
+      </Button>
+    </Link>
+  );
+};
 
 interface SidebarProps {
   isOpen: boolean;
@@ -43,6 +67,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { to: "/labexams", icon: <Microscope className="h-5 w-5 mr-3" />, label: "Exames Laboratoriais" },
     { to: "/quality-of-life", icon: <Smile className="h-5 w-5 mr-3" />, label: "Qualidade de Vida" },
     { to: "/genetic-data", icon: <Dna className="h-5 w-5 mr-3" />, label: "Dados Genéticos" },
+    { to: "https://www.angrasaude.com.br", icon: <Video className="h-5 w-5 mr-3" />, label: "Telemedicina" }, // Novo item
   ];
 
   const accessAndSecurityItems = [
@@ -52,7 +77,6 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   
   const otherItems = [
     { to: "/settings", icon: <Settings className="h-5 w-5 mr-3" />, label: "Configurações" },
-    // { to: "/help", icon: <HelpCircle className="h-5 w-5 mr-3" />, label: "Central de Ajuda" }, // Item removido
     { to: "/technical-details", icon: <Info className="h-5 w-5 mr-3" />, label: "Detalhes Técnicos" },
     { to: "/qr-ana-ativo", icon: <QrCode className="h-5 w-5 mr-3" />, label: "QR CODE de ANA+ATIVO" },
   ];
@@ -83,7 +107,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
         <nav className="flex-1 space-y-1 overflow-y-auto p-4">
           <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Principal</h3>
           {mainMenuItems.map(item => (
-            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={isOpen ? toggleSidebar : undefined} />
+            <SidebarItem key={item.label} {...item} currentPath={currentPath} onClick={isOpen && !item.to.startsWith('http') ? toggleSidebar : (item.to.startsWith('http') && isOpen ? toggleSidebar : undefined)} />
           ))}
 
           <h3 className="px-3 pt-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Acesso e Segurança</h3>
