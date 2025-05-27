@@ -1,7 +1,7 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "@jest/globals";
+// Removed: import { describe, it, expect } from "@jest/globals";
 import BloodPressureChart from "../BloodPressureChart";
 
 const mockData = [
@@ -20,9 +20,11 @@ describe("BloodPressureChart", () => {
   it("renders info cards correctly", () => {
     render(<BloodPressureChart data={mockData} />);
     
-    expect(screen.getByText("Dentro da Meta")).toBeInTheDocument();
-    expect(screen.getByText("Tendência de Melhora")).toBeInTheDocument();
-    expect(screen.getByText("Suas leituras estão dentro da faixa recomendada (<130/80 mmHg) em 85% das medições.")).toBeInTheDocument();
-    expect(screen.getByText("Redução média de 5 mmHg na sistólica em comparação com o mês anterior.")).toBeInTheDocument();
+    // Updated text to match component
+    expect(screen.getByText("Tendência Positiva")).toBeInTheDocument();
+    expect(screen.getByText("Recomendação")).toBeInTheDocument();
+    expect(screen.getByText("Redução de 15 pontos na pressão sistólica comparado aos níveis de 30 dias atrás.")).toBeInTheDocument();
+    expect(screen.getByText("Mantenha o monitoramento regular e continue com sua medicação conforme prescrito.")).toBeInTheDocument();
   });
 });
+

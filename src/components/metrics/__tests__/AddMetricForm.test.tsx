@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, it, expect, jest, beforeEach } from "@jest/globals";
+// Removed: import { describe, it, expect, jest, beforeEach } from "@jest/globals";
 import AddMetricForm from "../AddMetricForm";
 
 describe("AddMetricForm", () => {
@@ -63,22 +63,27 @@ describe("AddMetricForm", () => {
     await userEvent.type(screen.getByLabelText(/valor/i), "110");
     
     const dateInput = screen.getByLabelText(/data da medição/i);
-    await userEvent.type(dateInput, "2023-06-15T08:30");
-    
+    // Use a valid ISO string format that datetime-local input expects
+    // For example: "YYYY-MM-DDTHH:mm"
+    fireEvent.change(dateInput, { target: { value: "2023-06-15T08:30" } });
+        
     await userEvent.type(screen.getByLabelText(/observações/i), "Em jejum");
     
     // Submit the form
     await userEvent.click(screen.getByRole("button", { name: /salvar/i }));
     
     // Check if onAddMetric was called with correct values
-    expect(mockOnAddMetric).toHaveBeenCalledWith(
-      expect.objectContaining({
-        metricType: "bloodGlucose",
-        value: "110",
-        date: "2023-06-15T08:30",
-        notes: "Em jejum"
-      }),
-      expect.anything()
-    );
+    await waitFor(() => {
+      expect(mockOnAddMetric).toHaveBeenCalledWith(
+        expect.objectContaining({
+          metricType: "bloodGlucose",
+          value: "110", // Value from input type="number" might be a string
+          date: "2023-06-15T08:30",
+          notes: "Em jejum"
+        })
+        // Removed expect.anything() as the second argument unless your onAddMetric specifically takes two args
+      );
+    });
   });
 });
+

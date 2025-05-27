@@ -1,12 +1,17 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "@jest/globals";
+import { BrowserRouter } from "react-router-dom"; // Added for Link component
+// Removed: import { describe, it, expect } from "@jest/globals";
 import MetricsSummary from "../MetricsSummary";
 
 describe("MetricsSummary", () => {
   it("renders all health metrics correctly", () => {
-    render(<MetricsSummary />);
+    render(
+      <BrowserRouter>
+        <MetricsSummary />
+      </BrowserRouter>
+    );
     
     // Check if all three metrics are rendered
     expect(screen.getByText("Pressão Arterial")).toBeInTheDocument();
@@ -22,5 +27,9 @@ describe("MetricsSummary", () => {
     expect(screen.getByText("mmHg")).toBeInTheDocument();
     expect(screen.getByText("mg/dL")).toBeInTheDocument();
     expect(screen.getByText("bpm")).toBeInTheDocument();
+
+    // Check for the link to lab exams
+    expect(screen.getByRole('link', { name: /exames laboratoriais/i })).toBeInTheDocument();
   });
 });
+

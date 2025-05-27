@@ -1,7 +1,7 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "@jest/globals";
+// Removed: import { describe, it, expect } from "@jest/globals";
 import WeightChart from "../WeightChart";
 
 const mockData = [
@@ -26,3 +26,4 @@ describe("WeightChart", () => {
     expect(screen.getByText("Você está a apenas 2.5kg da sua meta de peso. Continue assim!")).toBeInTheDocument();
   });
 });
+

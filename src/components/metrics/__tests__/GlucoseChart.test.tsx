@@ -1,7 +1,7 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "@jest/globals";
+// Removed: import { describe, it, expect } from "@jest/globals";
 import GlucoseChart from "../GlucoseChart";
 
 const mockData = [
@@ -26,3 +26,4 @@ describe("GlucoseChart", () => {
     expect(screen.getByText("Aumento médio de 8 mg/dL em comparação com o mês anterior. Considere consultar seu médico.")).toBeInTheDocument();
   });
 });
+

@@ -1,7 +1,7 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "@jest/globals";
+// Removed: import { describe, it, expect } from "@jest/globals";
 import HeartRateChart from "../HeartRateChart";
 
 const mockData = [
@@ -26,3 +26,4 @@ describe("HeartRateChart", () => {
     expect(screen.getByText("Seu tempo de recuperação após exercícios melhorou em 12% no último mês.")).toBeInTheDocument();
   });
 });
+
