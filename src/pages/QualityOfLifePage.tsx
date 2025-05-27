@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress';
-import { Badge } from "@/components/ui/badge';
+import { Progress } from "@/components/ui/progress"; // Changed single quote to double quote
+import { Badge } from "@/components/ui/badge"; // Changed single quote to double quote
 import { Button } from '@/components/ui/button';
 import { Smile, TrendingUp, TrendingDown, Clock, Zap, Activity, UserCheck, Users, Wind, Brain, Briefcase, FileText, BarChart3, ArrowRight } from 'lucide-react';
 
