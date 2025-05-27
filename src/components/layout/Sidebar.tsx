@@ -1,5 +1,6 @@
+
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, FileText, Pill, Calendar, BarChart2, KeyRound, ShieldAlert, Microscope, Dna, Settings, HelpCircle, LifeBuoy, Smile, Info, LayoutDashboard, QrCode } from 'lucide-react'; // Adicionado Smile e QrCode
+import { Home, User, FileText, Pill, Calendar, BarChart2, KeyRound, ShieldAlert, Microscope, Dna, Settings, HelpCircle, LifeBuoy, Smile, Info, LayoutDashboard, QrCode } from 'lucide-react'; // Adicionado Smile e QrCode. LifeBuoy não é mais usado diretamente aqui se Suporte for o único item a usá-lo.
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -52,9 +53,9 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   const otherItems = [
     { to: "/settings", icon: <Settings className="h-5 w-5 mr-3" />, label: "Configurações" },
     { to: "/help", icon: <HelpCircle className="h-5 w-5 mr-3" />, label: "Central de Ajuda" },
-    { to: "/support", icon: <LifeBuoy className="h-5 w-5 mr-3" />, label: "Suporte" },
+    // { to: "/support", icon: <LifeBuoy className="h-5 w-5 mr-3" />, label: "Suporte" }, // Item removido
     { to: "/technical-details", icon: <Info className="h-5 w-5 mr-3" />, label: "Detalhes Técnicos" },
-    { to: "/qr-ana-ativo", icon: <QrCode className="h-5 w-5 mr-3" />, label: "QR CODE de ANA+ATIVO" }, // Novo item
+    { to: "/qr-ana-ativo", icon: <QrCode className="h-5 w-5 mr-3" />, label: "QR CODE de ANA+ATIVO" },
   ];
 
   return (
@@ -110,3 +111,4 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
 };
 
 export default Sidebar;
+
