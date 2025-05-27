@@ -1,8 +1,7 @@
-
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, FileText, Pill, Calendar, BarChart2, KeyRound, ShieldAlert, Microscope, Dna, Settings, HelpCircle, LifeBuoy, Smile, Info, LayoutDashboard } from 'lucide-react'; // Adicionado Smile
+import { Home, User, FileText, Pill, Calendar, BarChart2, KeyRound, ShieldAlert, Microscope, Dna, Settings, HelpCircle, LifeBuoy, Smile, Info, LayoutDashboard, QrCode } from 'lucide-react'; // Adicionado Smile e QrCode
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button'; // Garantir que Button seja importado
+import { Button } from '@/components/ui/button';
 
 interface SidebarItemProps {
   to: string;
@@ -41,7 +40,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { to: "/appointments", icon: <Calendar className="h-5 w-5 mr-3" />, label: "Consultas" },
     { to: "/metrics", icon: <BarChart2 className="h-5 w-5 mr-3" />, label: "Métricas de Saúde" },
     { to: "/labexams", icon: <Microscope className="h-5 w-5 mr-3" />, label: "Exames Laboratoriais" },
-    { to: "/quality-of-life", icon: <Smile className="h-5 w-5 mr-3" />, label: "Qualidade de Vida" }, // Novo item
+    { to: "/quality-of-life", icon: <Smile className="h-5 w-5 mr-3" />, label: "Qualidade de Vida" },
     { to: "/genetic-data", icon: <Dna className="h-5 w-5 mr-3" />, label: "Dados Genéticos" },
   ];
 
@@ -55,8 +54,8 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
     { to: "/help", icon: <HelpCircle className="h-5 w-5 mr-3" />, label: "Central de Ajuda" },
     { to: "/support", icon: <LifeBuoy className="h-5 w-5 mr-3" />, label: "Suporte" },
     { to: "/technical-details", icon: <Info className="h-5 w-5 mr-3" />, label: "Detalhes Técnicos" },
+    { to: "/qr-ana-ativo", icon: <QrCode className="h-5 w-5 mr-3" />, label: "QR CODE de ANA+ATIVO" }, // Novo item
   ];
-
 
   return (
     <>
@@ -76,7 +75,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
       >
         <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6 dark:border-gray-800">
           <Link to="/dashboard" className="flex items-center gap-2">
-            <img src="/favicon.ico" alt="Logo" className="h-8 w-8" />
+            <img src="/favicon.ico" alt="Logo" className="h-8 w-8" /> {/* Idealmente, usar o logo correto se disponível */}
             <span className="text-lg font-semibold">Vida Segura</span>
           </Link>
         </div>
@@ -84,17 +83,17 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
         <nav className="flex-1 space-y-1 overflow-y-auto p-4">
           <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Principal</h3>
           {mainMenuItems.map(item => (
-            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={toggleSidebar} />
+            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={isOpen ? toggleSidebar : undefined} />
           ))}
 
           <h3 className="px-3 pt-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Acesso e Segurança</h3>
           {accessAndSecurityItems.map(item => (
-            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={toggleSidebar} />
+            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={isOpen ? toggleSidebar : undefined} />
           ))}
           
           <h3 className="px-3 pt-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Outros</h3>
           {otherItems.map(item => (
-            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={toggleSidebar} />
+            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={isOpen ? toggleSidebar : undefined} />
           ))}
         </nav>
 
@@ -111,4 +110,3 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
 };
 
 export default Sidebar;
-
