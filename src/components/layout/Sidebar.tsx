@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, FileText, Pill, Calendar, BarChart2, KeyRound, ShieldAlert, Microscope, Dna, Settings, HelpCircle, LifeBuoy, Smile, Info, LayoutDashboard, QrCode } from 'lucide-react'; // Adicionado Smile e QrCode. LifeBuoy não é mais usado diretamente aqui se Suporte for o único item a usá-lo.
+import { LayoutDashboard, User, FileText, Pill, Calendar, BarChart2, Microscope, Smile, Dna, KeyRound, ShieldAlert, Settings, Info, QrCode } from 'lucide-react'; // Removido HelpCircle e LifeBuoy não é usado
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -52,8 +52,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   
   const otherItems = [
     { to: "/settings", icon: <Settings className="h-5 w-5 mr-3" />, label: "Configurações" },
-    { to: "/help", icon: <HelpCircle className="h-5 w-5 mr-3" />, label: "Central de Ajuda" },
-    // { to: "/support", icon: <LifeBuoy className="h-5 w-5 mr-3" />, label: "Suporte" }, // Item removido
+    // { to: "/help", icon: <HelpCircle className="h-5 w-5 mr-3" />, label: "Central de Ajuda" }, // Item removido
     { to: "/technical-details", icon: <Info className="h-5 w-5 mr-3" />, label: "Detalhes Técnicos" },
     { to: "/qr-ana-ativo", icon: <QrCode className="h-5 w-5 mr-3" />, label: "QR CODE de ANA+ATIVO" },
   ];
@@ -76,7 +75,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
       >
         <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6 dark:border-gray-800">
           <Link to="/dashboard" className="flex items-center gap-2">
-            <img src="/favicon.ico" alt="Logo" className="h-8 w-8" /> {/* Idealmente, usar o logo correto se disponível */}
+            <img src="/favicon.ico" alt="Logo" className="h-8 w-8" />
             <span className="text-lg font-semibold">Vida Segura</span>
           </Link>
         </div>
@@ -111,4 +110,3 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
 };
 
 export default Sidebar;
-
