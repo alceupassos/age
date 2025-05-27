@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,6 +21,7 @@ import GeneticDataPage from "./pages/GeneticData";
 import SettingsPage from "./pages/SettingsPage";
 import ManageAccessPage from "./pages/ManageAccessPage";
 import QualityOfLifePage from "./pages/QualityOfLifePage";
+import QrAnaAtivoPage from "./pages/QrAnaAtivoPage"; // Importa a nova página
 
 // Create placeholder components for routes that don't have dedicated pages yet
 const HelpPage = () => <div className="p-4"><h1 className="text-2xl font-bold">Central de Ajuda</h1><p>Conteúdo da central de ajuda estará disponível em breve.</p></div>;
@@ -53,6 +55,7 @@ const App = () => (
               <Route path="/manage-access" element={<ManageAccessPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/technical-details" element={<TechnicalDetailsPage />} />
+              <Route path="/qr-ana-ativo" element={<QrAnaAtivoPage />} /> {/* Adiciona a rota para a página QR ANA ATIVO */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -64,3 +67,4 @@ const App = () => (
 );
 
 export default App;
+
