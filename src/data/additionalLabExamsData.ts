@@ -8,28 +8,28 @@ export const additionalLabExams: LabExam[] = [
     date: '2024-05-10',
     provider: 'Laboratório Vida Saudável',
     category: 'Bioquímica',
-    status: 'attention',
+    status: 'warning', // Changed from 'attention'
     summary: 'Colesterol total e LDL elevados.',
     reportUrl: '/path/to/report6.pdf',
     groups: [
       {
         name: 'Colesterol Total',
         parameters: [
-          { name: 'Colesterol Total', value: '245', unit: 'mg/dL', referenceRange: '<200', status: 'warning', interpretation: 'Elevado, risco aumentado para doenças cardiovasculares.' },
+          { name: 'Colesterol Total', value: '245', unit: 'mg/dL', referenceRange: '<200', status: 'warning' },
         ],
       },
       {
         name: 'Lipoproteínas',
         parameters: [
-          { name: 'HDL Colesterol', value: '40', unit: 'mg/dL', referenceRange: '>40', status: 'normal', interpretation: 'Dentro do limite inferior, idealmente mais alto.' },
-          { name: 'LDL Colesterol', value: '165', unit: 'mg/dL', referenceRange: '<100', status: 'critical', interpretation: 'Muito elevado, alto risco cardiovascular. Requer intervenção.' },
-          { name: 'VLDL Colesterol', value: '40', unit: 'mg/dL', referenceRange: '<30', status: 'warning', interpretation: 'Elevado.' },
+          { name: 'HDL Colesterol', value: '40', unit: 'mg/dL', referenceRange: '>40', status: 'normal' },
+          { name: 'LDL Colesterol', value: '165', unit: 'mg/dL', referenceRange: '<100', status: 'critical' },
+          { name: 'VLDL Colesterol', value: '40', unit: 'mg/dL', referenceRange: '<30', status: 'warning' },
         ],
       },
       {
         name: 'Triglicerídeos',
         parameters: [
-          { name: 'Triglicerídeos', value: '180', unit: 'mg/dL', referenceRange: '<150', status: 'warning', interpretation: 'Elevado, sugere dieta inadequada ou outros fatores.' },
+          { name: 'Triglicerídeos', value: '180', unit: 'mg/dL', referenceRange: '<150', status: 'warning' },
         ],
       },
     ],
@@ -47,9 +47,9 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Indicadores de Função Renal',
         parameters: [
-          { name: 'Ureia', value: '35', unit: 'mg/dL', referenceRange: '15-40', status: 'normal', interpretation: 'Dentro da faixa de referência.' },
-          { name: 'Creatinina', value: '0.9', unit: 'mg/dL', referenceRange: '0.6-1.2', status: 'normal', interpretation: 'Dentro da faixa de referência.' },
-          { name: 'Taxa de Filtração Glomerular (TFG estimada)', value: '95', unit: 'mL/min/1.73m²', referenceRange: '>90', status: 'normal', interpretation: 'Função glomerular normal.' },
+          { name: 'Ureia', value: '35', unit: 'mg/dL', referenceRange: '15-40', status: 'normal' },
+          { name: 'Creatinina', value: '0.9', unit: 'mg/dL', referenceRange: '0.6-1.2', status: 'normal' },
+          { name: 'Taxa de Filtração Glomerular (TFG estimada)', value: '95', unit: 'mL/min/1.73m²', referenceRange: '>90', status: 'normal' },
         ],
       },
     ],
@@ -67,16 +67,16 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Transaminases',
         parameters: [
-          { name: 'AST (TGO)', value: '25', unit: 'U/L', referenceRange: '5-40', status: 'normal', interpretation: 'Normal.' },
-          { name: 'ALT (TGP)', value: '30', unit: 'U/L', referenceRange: '7-56', status: 'normal', interpretation: 'Normal.' },
+          { name: 'AST (TGO)', value: '25', unit: 'U/L', referenceRange: '5-40', status: 'normal' },
+          { name: 'ALT (TGP)', value: '30', unit: 'U/L', referenceRange: '7-56', status: 'normal' },
         ],
       },
       {
         name: 'Outros Marcadores Hepáticos',
         parameters: [
-          { name: 'Gama GT', value: '40', unit: 'U/L', referenceRange: '5-60', status: 'normal', interpretation: 'Normal.' },
-          { name: 'Fosfatase Alcalina', value: '80', unit: 'U/L', referenceRange: '40-129', status: 'normal', interpretation: 'Normal.' },
-          { name: 'Bilirrubina Total', value: '0.8', unit: 'mg/dL', referenceRange: '0.2-1.2', status: 'normal', interpretation: 'Normal.' },
+          { name: 'Gama GT', value: '40', unit: 'U/L', referenceRange: '5-60', status: 'normal' },
+          { name: 'Fosfatase Alcalina', value: '80', unit: 'U/L', referenceRange: '40-129', status: 'normal' },
+          { name: 'Bilirrubina Total', value: '0.8', unit: 'mg/dL', referenceRange: '0.2-1.2', status: 'normal' },
         ],
       },
     ],
@@ -87,16 +87,16 @@ export const additionalLabExams: LabExam[] = [
     date: '2024-02-01',
     provider: 'Laboratório Diagnóstico Avançado',
     category: 'Hormônios',
-    status: 'attention',
+    status: 'warning', // Changed from 'attention'
     summary: 'TSH levemente elevado, sugere hipotireoidismo subclínico.',
     reportUrl: '/path/to/report9.pdf',
     groups: [
       {
         name: 'Função Tireoidiana',
         parameters: [
-          { name: 'TSH (Hormônio Tireoestimulante)', value: '5.5', unit: 'µUI/mL', referenceRange: '0.4-4.5', status: 'warning', interpretation: 'Levemente elevado, pode indicar hipotireoidismo subclínico. Recomenda-se acompanhamento.' },
-          { name: 'T4 Livre', value: '1.2', unit: 'ng/dL', referenceRange: '0.8-1.8', status: 'normal', interpretation: 'Dentro da faixa de normalidade.' },
-          { name: 'T3 Total', value: '110', unit: 'ng/dL', referenceRange: '80-200', status: 'normal', interpretation: 'Normal.' },
+          { name: 'TSH (Hormônio Tireoestimulante)', value: '5.5', unit: 'µUI/mL', referenceRange: '0.4-4.5', status: 'warning' },
+          { name: 'T4 Livre', value: '1.2', unit: 'ng/dL', referenceRange: '0.8-1.8', status: 'normal' },
+          { name: 'T3 Total', value: '110', unit: 'ng/dL', referenceRange: '80-200', status: 'normal' },
         ],
       },
     ],
@@ -114,7 +114,7 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Níveis de Vitamina D',
         parameters: [
-          { name: '25-hidroxivitamina D', value: '10', unit: 'ng/mL', referenceRange: '30-100', status: 'critical', interpretation: 'Deficiência severa. Necessita suplementação e acompanhamento médico urgente.' },
+          { name: '25-hidroxivitamina D', value: '10', unit: 'ng/mL', referenceRange: '30-100', status: 'critical' },
         ],
       },
     ],
@@ -170,14 +170,14 @@ export const additionalLabExams: LabExam[] = [
     date: '2024-04-05',
     provider: 'Laboratório Coração Forte',
     category: 'Marcadores Inflamatórios',
-    status: 'attention',
+    status: 'warning', // Changed from 'attention'
     summary: 'PCR-us elevada, indica risco cardiovascular aumentado.',
     reportUrl: '/path/to/report12.pdf',
     groups: [
       {
         name: 'Proteína C Reativa Ultrassensível',
         parameters: [
-          { name: 'PCR-us', value: '3.5', unit: 'mg/L', referenceRange: '<1.0 (baixo risco), 1.0-3.0 (risco médio), >3.0 (alto risco)', status: 'warning', interpretation: 'Elevado, indicando alto risco cardiovascular. Aconselha-se investigação adicional e manejo de fatores de risco.' },
+          { name: 'PCR-us', value: '3.5', unit: 'mg/L', referenceRange: '<1.0 (baixo risco), 1.0-3.0 (risco médio), >3.0 (alto risco)', status: 'warning' },
         ],
       },
     ],
@@ -195,7 +195,7 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Controle Glicêmico a Longo Prazo',
         parameters: [
-          { name: 'Hemoglobina Glicada (A1c)', value: '5.5', unit: '%', referenceRange: '<5.7% (Normal), 5.7-6.4% (Pré-diabetes), >=6.5% (Diabetes)', status: 'normal', interpretation: 'Dentro da faixa de normalidade, bom controle glicêmico.' },
+          { name: 'Hemoglobina Glicada (A1c)', value: '5.5', unit: '%', referenceRange: '<5.7% (Normal), 5.7-6.4% (Pré-diabetes), >=6.5% (Diabetes)', status: 'normal' },
         ],
       },
     ],
@@ -206,14 +206,14 @@ export const additionalLabExams: LabExam[] = [
     date: '2024-02-12',
     provider: 'Clínica CheckUp',
     category: 'Metabolismo do Ferro',
-    status: 'attention',
+    status: 'warning', // Changed from 'attention'
     summary: 'Níveis de ferritina baixos, sugere deficiência de ferro.',
     reportUrl: '/path/to/report14.pdf',
     groups: [
       {
         name: 'Reserva de Ferro',
         parameters: [
-          { name: 'Ferritina', value: '18', unit: 'ng/mL', referenceRange: '30-400 (homens), 15-150 (mulheres)', status: 'warning', interpretation: 'Baixo, sugere deficiência de ferro. Investigar causa e considerar suplementação.' },
+          { name: 'Ferritina', value: '18', unit: 'ng/mL', referenceRange: '30-400 (homens), 15-150 (mulheres)', status: 'warning' },
         ],
       },
     ],
@@ -231,7 +231,7 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Metabolismo das Purinas',
         parameters: [
-          { name: 'Ácido Úrico', value: '5.0', unit: 'mg/dL', referenceRange: '3.4-7.0 (homens), 2.4-6.0 (mulheres)', status: 'normal', interpretation: 'Dentro dos limites de referência.' },
+          { name: 'Ácido Úrico', value: '5.0', unit: 'mg/dL', referenceRange: '3.4-7.0 (homens), 2.4-6.0 (mulheres)', status: 'normal' },
         ],
       },
     ],
@@ -249,7 +249,7 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Marcador Prostático',
         parameters: [
-          { name: 'PSA Total', value: '1.2', unit: 'ng/mL', referenceRange: '<4.0 (varia com idade)', status: 'normal', interpretation: 'Resultado normal. Recomenda-se acompanhamento regular conforme orientação médica.' },
+          { name: 'PSA Total', value: '1.2', unit: 'ng/mL', referenceRange: '<4.0 (varia com idade)', status: 'normal' },
         ],
       },
     ],
@@ -267,17 +267,17 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Equilíbrio Ácido-Base',
         parameters: [
-          { name: 'pH', value: '7.30', unit: '', referenceRange: '7.35-7.45', status: 'critical', interpretation: 'Acidemia.' },
-          { name: 'pCO2', value: '30', unit: 'mmHg', referenceRange: '35-45', status: 'warning', interpretation: 'Baixo, indicando compensação respiratória para acidose metabólica.' },
-          { name: 'HCO3 (Bicarbonato)', value: '15', unit: 'mEq/L', referenceRange: '22-26', status: 'critical', interpretation: 'Baixo, indicando acidose metabólica.' },
-          { name: 'BE (Excesso de Base)', value: '-8', unit: 'mEq/L', referenceRange: '-2 a +2', status: 'critical', interpretation: 'Déficit de base significativo.' },
+          { name: 'pH', value: '7.30', unit: '', referenceRange: '7.35-7.45', status: 'critical' },
+          { name: 'pCO2', value: '30', unit: 'mmHg', referenceRange: '35-45', status: 'warning' },
+          { name: 'HCO3 (Bicarbonato)', value: '15', unit: 'mEq/L', referenceRange: '22-26', status: 'critical' },
+          { name: 'BE (Excesso de Base)', value: '-8', unit: 'mEq/L', referenceRange: '-2 a +2', status: 'critical' },
         ],
       },
       {
         name: 'Oxigenação',
         parameters: [
-          { name: 'pO2', value: '90', unit: 'mmHg', referenceRange: '80-100', status: 'normal', interpretation: 'Oxigenação adequada.' },
-          { name: 'SatO2', value: '97', unit: '%', referenceRange: '95-100%', status: 'normal', interpretation: 'Saturação de oxigênio normal.' },
+          { name: 'pO2', value: '90', unit: 'mmHg', referenceRange: '80-100', status: 'normal' },
+          { name: 'SatO2', value: '97', unit: '%', referenceRange: '95-100%', status: 'normal' },
         ],
       },
     ],
@@ -296,7 +296,7 @@ export const additionalLabExams: LabExam[] = [
         name: 'Tempo de Protrombina (TP)',
         parameters: [
           { name: 'TP (Tempo)', value: '12.5', unit: 'segundos', referenceRange: '11-13.5', status: 'normal' },
-          { name: 'TP (RNI/INR)', value: '1.0', unit: '', referenceRange: '0.8-1.2 (não anticoagulado)', status: 'normal', interpretation: 'Normal para paciente não anticoagulado.' },
+          { name: 'TP (RNI/INR)', value: '1.0', unit: '', referenceRange: '0.8-1.2 (não anticoagulado)', status: 'normal' },
         ],
       },
       {
@@ -307,7 +307,7 @@ export const additionalLabExams: LabExam[] = [
       },
       {
         name: 'Contagem de Plaquetas',
-        parameters: [ // Reutilizando de um hemograma, mas comum em coagulograma
+        parameters: [ 
           { name: 'Plaquetas', value: '250000', unit: '/µL', referenceRange: '150000-450000', status: 'normal' },
         ],
       },
@@ -332,13 +332,13 @@ export const additionalLabExams: LabExam[] = [
       {
         name: 'Troponina I Ultrassensível',
         parameters: [
-          { name: 'Troponina I hs', value: '0.005', unit: 'ng/mL', referenceRange: '<0.040 (varia conforme laboratório)', status: 'normal', interpretation: 'Nível muito baixo, descarta lesão miocárdica aguda.' },
+          { name: 'Troponina I hs', value: '0.005', unit: 'ng/mL', referenceRange: '<0.040 (varia conforme laboratório)', status: 'normal' },
         ],
       },
       {
         name: 'CK-MB Massa',
         parameters: [
-          { name: 'CK-MB Massa', value: '1.5', unit: 'ng/mL', referenceRange: '<5.0', status: 'normal', interpretation: 'Normal.' },
+          { name: 'CK-MB Massa', value: '1.5', unit: 'ng/mL', referenceRange: '<5.0', status: 'normal' },
         ],
       },
     ],
@@ -349,21 +349,21 @@ export const additionalLabExams: LabExam[] = [
     date: '2023-08-10',
     provider: 'Centro de Diabetes e Endocrinologia',
     category: 'Diabetes',
-    status: 'attention',
+    status: 'warning', // Changed from 'attention'
     summary: 'Tolerância à glicose diminuída (pré-diabetes).',
     reportUrl: '/path/to/report20.pdf',
     groups: [
       {
         name: 'Glicemia em Jejuns',
         parameters: [
-          { name: 'Glicemia Basal (Jejum)', value: '105', unit: 'mg/dL', referenceRange: '<100', status: 'warning', interpretation: 'Glicemia de jejum alterada.' },
+          { name: 'Glicemia Basal (Jejum)', value: '105', unit: 'mg/dL', referenceRange: '<100', status: 'warning' },
         ],
       },
       {
         name: 'Glicemia Pós-Sobrecarga',
         parameters: [
           { name: 'Glicemia 60 min após 75g Glicose', value: '180', unit: 'mg/dL', referenceRange: 'Não definido como critério diagnóstico principal', status: 'info' },
-          { name: 'Glicemia 120 min após 75g Glicose', value: '155', unit: 'mg/dL', referenceRange: '<140 (Normal), 140-199 (Tolerância Diminuída), >=200 (Diabetes)', status: 'warning', interpretation: 'Tolerância à glicose diminuída. Risco aumentado para diabetes tipo 2.' },
+          { name: 'Glicemia 120 min após 75g Glicose', value: '155', unit: 'mg/dL', referenceRange: '<140 (Normal), 140-199 (Tolerância Diminuída), >=200 (Diabetes)', status: 'warning' },
         ],
       },
     ],

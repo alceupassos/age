@@ -1,7 +1,7 @@
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "@jest/globals";
+// Removed: import { describe, it, expect } from "@jest/globals"; // This line is removed
 import HealthMetric from "../../ui/HealthMetric";
 
 describe("HealthMetric", () => {
@@ -78,7 +78,8 @@ describe("HealthMetric", () => {
     
     expect(screen.getByText("Simple Metric")).toBeInTheDocument();
     expect(screen.getByText("75")).toBeInTheDocument();
-    expect(screen.getByText("Normal")).toBeInTheDocument();
-    expect(screen.queryByText("+5")).not.toBeInTheDocument();
+    expect(screen.getByText("Normal")).toBeInTheDocument(); // Default status
+    expect(screen.queryByText("+5")).not.toBeInTheDocument(); // Change is optional
   });
 });
+
