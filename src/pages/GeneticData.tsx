@@ -1,9 +1,13 @@
+
 import MainLayout from '@/components/layout/MainLayout';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Dna, BarChart2, PieChart, Table, Users, Network, HelpCircle, FileText, Sigma, ExternalLink } from 'lucide-react';
+import { BarChart2, PieChart, Table, Users, Network, HelpCircle, FileText, Sigma } from 'lucide-react'; // Dna é usado no Header, ExternalLink não está em uso nos dados atuais
 import ManhattanPlot from '@/components/genetics/ManhattanPlot';
 import GeneticInfographic from '@/components/genetics/GeneticInfographic';
 import ConceptualMap from '@/components/genetics/ConceptualMap';
+import GeneticPageHeader from '@/components/genetics/GeneticPageHeader';
+import RecommendedReportsSection from '@/components/genetics/RecommendedReportsSection';
+import AdditionalVisualizationsSection from '@/components/genetics/AdditionalVisualizationsSection';
+
 import { 
   manhattanPlotData, 
   alleleFrequencyData, 
@@ -75,34 +79,44 @@ const GeneticDataPage = () => {
       component: <ManhattanPlot 
                    title="Associação de Variantes Genéticas com Doenças" 
                    data={manhattanPlotData} 
-                 />
+                 />,
+      explanation: "Esses gráficos mostram claramente associações entre variantes genéticas específicas e doenças. Os pontos acima da linha vermelha representam associações estatisticamente significativas, ajudando a identificar genes importantes relacionados a doenças específicas."
     },
     { 
       title: "Infográficos Educativos", 
-      description: "Representações visuais que explicam conceitos genéticos complexos de maneira simplificada, como a diferença entre genótipo e fenótipo.",
+      description: "Representações visuais que explicam conceitos genéticos complexos de maneira simplificada.",
       icon: <Sigma className="mr-2 h-4 w-4 text-blue-500" />,
-      components: [
-        <GeneticInfographic 
-          key="genotype-phenotype"
-          title="Diferença entre Genótipo e Fenótipo" 
-          description="O genótipo é o conjunto de genes de um organismo, enquanto o fenótipo são as características observáveis resultantes da expressão desses genes e da influência do ambiente."
-          data={genotypeData}
-          type="genotype"
-        />,
-        <GeneticInfographic
-          key="allele-frequency"
-          title="Frequência Alélica na População"
-          description="Distribuição dos diferentes alelos (variantes) de um gene na população geral."
-          data={alleleFrequencyData}
-          type="allele"
-        />,
-        <GeneticInfographic
-          key="risk-score"
-          title="Escores de Risco Genético"
-          description="Impacto de variantes genéticas específicas no risco relativo para uma condição."
-          data={riskScoreData}
-          type="risk"
-        />
+      groupedComponents: [ // Renomeado de 'components' para 'groupedComponents' e adicionado 'explanation'
+        {
+          component: <GeneticInfographic 
+            key="genotype-phenotype"
+            title="Diferença entre Genótipo e Fenótipo" 
+            description="O genótipo é o conjunto de genes de um organismo, enquanto o fenótipo são as características observáveis resultantes da expressão desses genes e da influência do ambiente."
+            data={genotypeData}
+            type="genotype"
+          />,
+          explanation: "Infográficos educativos explicam conceitos genéticos complexos como a diferença entre genótipo (seus genes específicos) e fenótipo (as características visíveis ou observáveis resultantes da expressão genética e interação com o ambiente)."
+        },
+        {
+          component: <GeneticInfographic
+            key="allele-frequency"
+            title="Frequência Alélica na População"
+            description="Distribuição dos diferentes alelos (variantes) de um gene na população geral."
+            data={alleleFrequencyData}
+            type="allele"
+          />,
+          explanation: "Este gráfico mostra claramente a prevalência de variantes genéticas específicas (alelos) na população geral, comparando sua frequência relativa para ajudar na compreensão do quanto uma variante é comum ou rara."
+        },
+        {
+          component: <GeneticInfographic
+            key="risk-score"
+            title="Escores de Risco Genético"
+            description="Impacto de variantes genéticas específicas no risco relativo para uma condição."
+            data={riskScoreData}
+            type="risk"
+          />,
+          explanation: "Este gráfico compara o risco relativo de doenças específicas entre indivíduos com diferentes variantes genéticas. Os dados são apresentados de maneira simples e intuitiva, destacando claramente como diferentes combinações genéticas influenciam seu risco individual em comparação à população geral."
+        }
       ]
     },
     { 
@@ -115,126 +129,20 @@ const GeneticDataPage = () => {
                    description="Este mapa mostra como os genes BRCA1, BRCA2 e TP53 interagem com vários processos celulares e estão associados ao desenvolvimento de câncer."
                    nodes={conceptualMapNodes}
                    edges={conceptualMapEdges}
-                 />
+                 />,
+      explanation: "Diagramas simples mostram como genes específicos, como BRCA1, BRCA2 e TP53, interagem em processos celulares relacionados ao câncer. Esses mapas facilitam o entendimento da complexidade genética do desenvolvimento de doenças como o câncer de mama e ovário, detalhando como mutações específicas aumentam o risco dessas condições."
     }
   ];
 
-  const understandingVisualizations = [
-    {
-      title: "Gráficos de Manhattan",
-      text: "Esses gráficos mostram claramente associações entre variantes genéticas específicas e doenças. Os pontos acima da linha vermelha representam associações estatisticamente significativas, ajudando a identificar genes importantes relacionados a doenças específicas."
-    },
-    {
-      title: "Infográficos Educativos: Genótipo vs. Fenótipo",
-      text: "Infográficos educativos explicam conceitos genéticos complexos como a diferença entre genótipo (seus genes específicos) e fenótipo (as características visíveis ou observáveis resultantes da expressão genética e interação com o ambiente)."
-    },
-    {
-      title: "Frequência Alélica na População",
-      text: "Este gráfico mostra claramente a prevalência de variantes genéticas específicas (alelos) na população geral, comparando sua frequência relativa para ajudar na compreensão do quanto uma variante é comum ou rara."
-    },
-    {
-      title: "Escores de Risco Genético",
-      text: "Este gráfico compara o risco relativo de doenças específicas entre indivíduos com diferentes variantes genéticas. Os dados são apresentados de maneira simples e intuitiva, destacando claramente como diferentes combinações genéticas influenciam seu risco individual em comparação à população geral."
-    },
-    {
-      title: "Mapas Conceituais de Interações Genéticas",
-      text: "Diagramas simples mostram como genes específicos, como BRCA1, BRCA2 e TP53, interagem em processos celulares relacionados ao câncer. Esses mapas facilitam o entendimento da complexidade genética do desenvolvimento de doenças como o câncer de mama e ovário, detalhando como mutações específicas aumentam o risco dessas condições."
-    }
-  ];
+  // A constante 'understandingVisualizations' e sua seção de renderização foram removidas,
+  // pois o conteúdo agora está integrado em 'additionalVisualizations'.
 
   return (
     <MainLayout>
-      <div className="space-y-8">
-        <header className="flex items-center space-x-3">
-          <Dna className="h-8 w-8 text-purple-600" />
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Dados Genéticos</h1>
-        </header>
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Relatórios Genéticos Recomendados</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reports.map((report) => (
-              <Card key={report.id} className="flex flex-col">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-lg">
-                    {report.icon}
-                    {report.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow space-y-3">
-                  <div>
-                    <h4 className="font-semibold text-sm text-gray-700 dark:text-gray-300">Conteúdo:</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{report.content}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm text-gray-700 dark:text-gray-300">Gráficos Sugeridos:</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{report.graphs}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm text-gray-700 dark:text-gray-300">Explicações:</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{report.explanations}</p>
-                  </div>
-                  {report.sources && (
-                    <div className="text-xs text-gray-500 dark:text-gray-500 pt-2 border-t border-gray-200 dark:border-gray-700">
-                      Fontes: {report.sources.join(', ')}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Visualizações e Explicações Adicionais</h2>
-          <div className="space-y-6">
-            {additionalVisualizations.map((viz, index) => (
-               <Card key={index}>
-                <CardHeader>
-                  <CardTitle className="flex items-center text-md">
-                    {viz.icon}
-                    {viz.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {viz.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {viz.component && viz.component}
-                  {viz.components && (
-                    <div className="space-y-8">
-                      {viz.components.map((component, idx) => (
-                        <div key={idx} className="mb-6">
-                          {component}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {viz.sources && (
-                    <div className="text-xs text-gray-500 dark:text-gray-500 pt-2 mt-2 border-t border-gray-200 dark:border-gray-700">
-                      Fontes: {viz.sources.join(', ')}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Entendendo as Visualizações Genéticas</h2>
-          <Card>
-            <CardContent className="pt-6 space-y-6">
-              {understandingVisualizations.map((item, index) => (
-                <div key={index}>
-                  <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.text}</p>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-        </section>
-
+      <div className="space-y-8 p-4 md:p-6">
+        <GeneticPageHeader />
+        <RecommendedReportsSection reports={reports} />
+        <AdditionalVisualizationsSection visualizations={additionalVisualizations} />
       </div>
     </MainLayout>
   );
