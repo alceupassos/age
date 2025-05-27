@@ -2,11 +2,18 @@
 /// <reference types="vite/client" />
 /// <reference types="jest" />
 
-// Adicionando uma importação direta para jest-dom pode ajudar o TypeScript a encontrar as definições de tipo.
-// Isso garante que os matchers customizados como .toBeInTheDocument() sejam reconhecidos.
+// This import should be sufficient to augment Jest's matchers
+// with types from @testing-library/jest-dom.
 import '@testing-library/jest-dom';
 
-// Declarações de extensão para resolver os erros de TypeScript nos testes
+// If you still face issues, you might need to ensure your tsconfig.json
+// is correctly set up to include type definitions or that there are no
+// conflicting global type declarations elsewhere in your project for Jest matchers.
+// For example, ensure "types": ["jest", "@testing-library/jest-dom"] is in compilerOptions
+// or that a setup file importing '@testing-library/jest-dom' is included.
+
+// The previous global declaration was:
+/*
 declare global {
   namespace jest {
     interface Matchers<R> {
@@ -22,7 +29,8 @@ declare global {
       toHaveStyle(style: string): R;
       toHaveClass(className: string): R;
       toContainElement(element: HTMLElement | null): R;
-      toHaveAttribute(attr: string, value?: string): R;
     }
   }
 }
+*/
+// This is often not needed if @testing-library/jest-dom is imported correctly.
