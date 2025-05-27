@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import { TooltipProvider } from "@/components/ui/tooltip"; 
@@ -17,7 +16,7 @@ import {
   eq5dVASTrend,
   overallStatus,
   lastCheckIn
-} from '@/data/qolData';
+} from '@/data/qolData.tsx'; // Changed .ts to .tsx
 import { renderSmallTrendIcon } from '@/utils/qolRenderUtils';
 
 
