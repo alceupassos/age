@@ -1,9 +1,10 @@
 
 /// <reference types="vite/client" />
 /// <reference types="jest" />
-import '@testing-library/jest-dom';
+/// <reference types="@testing-library/jest-dom" />
 
-// The import of '@testing-library/jest-dom' should augment Jest's expect matchers.
-// If type errors persist in test files (e.g., for toBeInTheDocument),
-// ensure your tsconfig.json includes this file and "jest", "@testing-library/jest-dom" in compilerOptions.types.
-// Also, check your Jest setup file (e.g., setupTests.ts) to see if '@testing-library/jest-dom' is imported there.
+// A diretiva de referência types="@testing-library/jest-dom" acima deve aumentar os matchers do Jest.
+// Se os erros de tipo persistirem nos arquivos de teste (por exemplo, para toBeInTheDocument),
+// verifique se o seu tsconfig.json inclui este arquivo e "jest", "@testing-library/jest-dom" em compilerOptions.types.
+// Além disso, verifique o seu arquivo de configuração do Jest (por exemplo, setupTests.ts) para ver se '@testing-library/jest-dom' é importado lá.
+
