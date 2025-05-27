@@ -1,7 +1,6 @@
-
 import MainLayout from '@/components/layout/MainLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Dna, BarChart2, PieChart, Table, Users, Network, HelpCircle, FileText, Sigma } from 'lucide-react';
+import { Dna, BarChart2, PieChart, Table, Users, Network, HelpCircle, FileText, Sigma, ExternalLink } from 'lucide-react';
 import ManhattanPlot from '@/components/genetics/ManhattanPlot';
 import GeneticInfographic from '@/components/genetics/GeneticInfographic';
 import ConceptualMap from '@/components/genetics/ConceptualMap';
@@ -120,6 +119,29 @@ const GeneticDataPage = () => {
     }
   ];
 
+  const understandingVisualizations = [
+    {
+      title: "Gráficos de Manhattan",
+      text: "Esses gráficos mostram claramente associações entre variantes genéticas específicas e doenças. Os pontos acima da linha vermelha representam associações estatisticamente significativas, ajudando a identificar genes importantes relacionados a doenças específicas."
+    },
+    {
+      title: "Infográficos Educativos: Genótipo vs. Fenótipo",
+      text: "Infográficos educativos explicam conceitos genéticos complexos como a diferença entre genótipo (seus genes específicos) e fenótipo (as características visíveis ou observáveis resultantes da expressão genética e interação com o ambiente)."
+    },
+    {
+      title: "Frequência Alélica na População",
+      text: "Este gráfico mostra claramente a prevalência de variantes genéticas específicas (alelos) na população geral, comparando sua frequência relativa para ajudar na compreensão do quanto uma variante é comum ou rara."
+    },
+    {
+      title: "Escores de Risco Genético",
+      text: "Este gráfico compara o risco relativo de doenças específicas entre indivíduos com diferentes variantes genéticas. Os dados são apresentados de maneira simples e intuitiva, destacando claramente como diferentes combinações genéticas influenciam seu risco individual em comparação à população geral."
+    },
+    {
+      title: "Mapas Conceituais de Interações Genéticas",
+      text: "Diagramas simples mostram como genes específicos, como BRCA1, BRCA2 e TP53, interagem em processos celulares relacionados ao câncer. Esses mapas facilitam o entendimento da complexidade genética do desenvolvimento de doenças como o câncer de mama e ovário, detalhando como mutações específicas aumentam o risco dessas condições."
+    }
+  ];
+
   return (
     <MainLayout>
       <div className="space-y-8">
@@ -198,6 +220,21 @@ const GeneticDataPage = () => {
             ))}
           </div>
         </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Entendendo as Visualizações Genéticas</h2>
+          <Card>
+            <CardContent className="pt-6 space-y-6">
+              {understandingVisualizations.map((item, index) => (
+                <div key={index}>
+                  <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.text}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </section>
+
       </div>
     </MainLayout>
   );
