@@ -1,5 +1,5 @@
 
-import { defineConfig } from 'vitest/config'; // Import defineConfig from vitest/config
+import { defineConfig } from 'vitest/config'; // Correto
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
@@ -20,12 +20,12 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  test: { // Add Vitest/Jest configuration
-    globals: true, // Enable Jest global APIs
-    environment: 'jsdom', // Set test environment to JSDOM
-    setupFiles: './src/setupTests.ts', // Specify setup file
-    // If you encounter issues with CSS imports in tests, you might need:
-    // css: true, 
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
+    // Se você encontrar problemas com importações CSS em testes, pode precisar de:
+    // css: true,
   },
 }));
 
