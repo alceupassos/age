@@ -1,12 +1,19 @@
 
 /// <reference types="vite/client" />
 
-// This line is crucial for making TypeScript aware of the custom Jest matchers
-// provided by @testing-library/jest-dom, such as .toBeInTheDocument().
-// It tells TypeScript to include the type definitions from this package.
-/// <reference types="@testing-library/jest-dom" />
+// Ensure Jest types are available
+/// <reference types="jest" />
 
-// The 'export {}' makes this file a module, which is standard practice
-// for .d.ts files included in a TypeScript project.
-export {};
+// Ensure Jest-DOM matchers are available to TypeScript
+// This imports the type augmentations for Jest's `expect`
+import '@testing-library/jest-dom/matchers';
+
+declare global {
+  // This namespace merge is often needed if auto-augmentation isn't working
+  namespace jest {
+    interface Matchers<R = void, T = {}> extends import('@testing-library/jest-dom/matchers').JestMatchers<R> {}
+  }
+}
+
+export {}; // Keep it a module
 

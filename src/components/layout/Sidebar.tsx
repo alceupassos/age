@@ -1,173 +1,109 @@
-import { useState } from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  UserRound, 
-  FileText, 
-  ShieldCheck, 
-  QrCode,
-  Pill,
-  Calendar,
-  Heart,
-  BarChart3,
-  MessageCircleQuestion,
-  HelpCircle,
-  LogOut,
-  ChevronLeft,
-  ChevronRight,
-  Key,
-  FlaskConical,
-  TerminalSquare,
-  Dna // Added Dna icon
-} from 'lucide-react';
+import { Home, User, FileText, Pill, Calendar, BarChart2, KeyRound, ShieldAlert, Microscope, Dna, Settings, HelpCircle, LifeBuoy, Smile, Info, LayoutDashboard } from 'lucide-react'; // Adicionado Smile
 import { cn } from '@/lib/utils';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button'; // Garantir que Button seja importado
+
+interface SidebarItemProps {
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+  currentPath: string;
+  onClick?: () => void;
+}
+
+const SidebarItem = ({ to, icon, label, currentPath, onClick }: SidebarItemProps) => (
+  <Link to={to} onClick={onClick}>
+    <Button
+      variant={currentPath === to ? 'secondary' : 'ghost'}
+      className="w-full justify-start text-base py-3 h-auto"
+    >
+      {icon}
+      {label}
+    </Button>
+  </Link>
+);
 
 interface SidebarProps {
   isOpen: boolean;
   toggleSidebar: () => void;
 }
 
-interface NavItem {
-  nameKey: string; 
-  path: string;
-  icon: JSX.Element;
-  isLiteral?: boolean; 
-  isNew?: boolean; // Flag for special styling if needed
-}
-
 const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   const location = useLocation();
-  const { t } = useLanguage();
-  
-  const [navItems] = useState<NavItem[]>([
-    { nameKey: 'nav.dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} /> },
-    { nameKey: 'nav.profile', path: '/profile', icon: <UserRound size={20} /> },
-    { nameKey: 'nav.records', path: '/records', icon: <FileText size={20} /> },
-    { nameKey: 'nav.medications', path: '/medications', icon: <Pill size={20} /> },
-    { nameKey: 'nav.appointments', path: '/appointments', icon: <Calendar size={20} /> },
-    { nameKey: 'nav.metrics', path: '/metrics', icon: <BarChart3 size={20} /> },
-    { nameKey: 'nav.labexams', path: '/labexams', icon: <FlaskConical size={20} /> },
-    { nameKey: 'Dados Genéticos', path: '/genetic-data', icon: <Dna size={20} className="text-purple-500"/>, isLiteral: true, isNew: true }, // New Genetic Data item
-    { nameKey: 'nav.access', path: '/access', icon: <ShieldCheck size={20} /> },
-    { nameKey: 'nav.emergency', path: '/emergency', icon: <QrCode size={20} /> },
-  ]);
-  
-  const supportItems: NavItem[] = [
-    { nameKey: 'nav.help', path: '/help', icon: <HelpCircle size={20} /> },
-    { nameKey: 'nav.support', path: '/support', icon: <MessageCircleQuestion size={20} /> },
-    { nameKey: 'nav.manage', path: '/manage-access', icon: <Key size={20} /> },
-    { nameKey: 'Técnica', path: '/technical-details', icon: <TerminalSquare size={20} />, isLiteral: true },
+  const currentPath = location.pathname;
+
+  const mainMenuItems = [
+    { to: "/dashboard", icon: <LayoutDashboard className="h-5 w-5 mr-3" />, label: "Painel de Controle" },
+    { to: "/profile", icon: <User className="h-5 w-5 mr-3" />, label: "Perfil do Paciente" },
+    { to: "/records", icon: <FileText className="h-5 w-5 mr-3" />, label: "Registros Médicos" },
+    { to: "/medications", icon: <Pill className="h-5 w-5 mr-3" />, label: "Medicamentos" },
+    { to: "/appointments", icon: <Calendar className="h-5 w-5 mr-3" />, label: "Consultas" },
+    { to: "/metrics", icon: <BarChart2 className="h-5 w-5 mr-3" />, label: "Métricas de Saúde" },
+    { to: "/labexams", icon: <Microscope className="h-5 w-5 mr-3" />, label: "Exames Laboratoriais" },
+    { to: "/quality-of-life", icon: <Smile className="h-5 w-5 mr-3" />, label: "Qualidade de Vida" }, // Novo item
+    { to: "/genetic-data", icon: <Dna className="h-5 w-5 mr-3" />, label: "Dados Genéticos" },
   ];
+
+  const accessAndSecurityItems = [
+    { to: "/manage-access", icon: <KeyRound className="h-5 w-5 mr-3" />, label: "Gerenciar Acesso" },
+    { to: "/emergency", icon: <ShieldAlert className="h-5 w-5 mr-3" />, label: "Acesso de Emergência" },
+  ];
+  
+  const otherItems = [
+    { to: "/settings", icon: <Settings className="h-5 w-5 mr-3" />, label: "Configurações" },
+    { to: "/help", icon: <HelpCircle className="h-5 w-5 mr-3" />, label: "Central de Ajuda" },
+    { to: "/support", icon: <LifeBuoy className="h-5 w-5 mr-3" />, label: "Suporte" },
+    { to: "/technical-details", icon: <Info className="h-5 w-5 mr-3" />, label: "Detalhes Técnicos" },
+  ];
+
 
   return (
     <>
       {/* Overlay for mobile */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/30 z-30 md:hidden" 
+        <div
+          className="fixed inset-0 z-30 bg-black/50 md:hidden"
           onClick={toggleSidebar}
         />
       )}
-      
-      {/* Sidebar */}
-      <aside 
+
+      <aside
         className={cn(
-          "fixed top-0 left-0 z-40 h-screen pt-20 transition-transform duration-300 ease-in-out bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800",
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0",
-          "md:w-64 w-[250px]"
+          "fixed inset-y-0 left-0 z-40 flex w-64 transform flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950 transition-transform duration-300 ease-in-out md:translate-x-0",
+          isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        {/* Toggle button */}
-        <button 
-          onClick={toggleSidebar}
-          className="absolute -right-8 top-24 bg-white dark:bg-gray-900 p-1.5 rounded-r border-y border-r border-gray-200 dark:border-gray-800 hidden md:flex"
-        >
-          {isOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
-        </button>
-        
-        <div className="h-full flex flex-col px-3 overflow-y-auto">
-          <div className="space-y-1 py-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={cn(
-                  "flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group transition-colors",
-                  location.pathname === item.path
-                    ? "bg-primary/10 text-primary"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800",
-                  item.isNew && location.pathname !== item.path ? "text-purple-600 dark:text-purple-400" : "" // Special color for new item if not active
-                )}
-              >
-                <span className={cn(
-                  "inline-flex items-center justify-center mr-3",
-                  location.pathname === item.path
-                    ? "text-primary" // Active icon color
-                    : item.isNew ? "text-purple-500" : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300" // New item icon color or default
-                )}>
-                  {item.icon}
-                </span>
-                <span className={cn("truncate", item.isNew && location.pathname !== item.path ? "font-semibold" : "")}>
-                  {item.isLiteral ? item.nameKey : t(item.nameKey)}
-                </span>
-                
-                {location.pathname === item.path && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary"></span>
-                )}
-              </Link>
-            ))}
-          </div>
+        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6 dark:border-gray-800">
+          <Link to="/dashboard" className="flex items-center gap-2">
+            <img src="/favicon.ico" alt="Logo" className="h-8 w-8" />
+            <span className="text-lg font-semibold">Vida Segura</span>
+          </Link>
+        </div>
+
+        <nav className="flex-1 space-y-1 overflow-y-auto p-4">
+          <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Principal</h3>
+          {mainMenuItems.map(item => (
+            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={toggleSidebar} />
+          ))}
+
+          <h3 className="px-3 pt-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Acesso e Segurança</h3>
+          {accessAndSecurityItems.map(item => (
+            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={toggleSidebar} />
+          ))}
           
-          <div className="mt-4 px-3">
-            <div className="glass-card rounded-lg p-4">
-              <div className="flex items-center text-primary">
-                <Heart size={18} className="mr-2" />
-                <h3 className="text-sm font-medium">Status de Saúde</h3>
-              </div>
-              <div className="mt-2 flex items-center">
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div className="bg-medical h-2 rounded-full" style={{ width: '87%' }}></div>
-                </div>
-                <span className="ml-2 text-xs font-medium">87%</span>
-              </div>
-              <div className="mt-2 text-xs text-gray-500">
-                Atualizado: Hoje, 9:45
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-auto pb-6 pt-4 space-y-1">
-            {supportItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={cn(
-                  "flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group transition-colors",
-                  location.pathname === item.path
-                    ? "bg-primary/10 text-primary"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                )}
-              >
-                <span className={cn(
-                  "inline-flex items-center justify-center mr-3",
-                  location.pathname === item.path
-                    ? "text-primary"
-                    : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300"
-                )}>
-                  {item.icon}
-                </span>
-                <span className="truncate">{item.isLiteral ? item.nameKey : t(item.nameKey)}</span>
-              </Link>
-            ))}
-            
-            <button className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <span className="inline-flex items-center justify-center mr-3 text-gray-500 dark:text-gray-400">
-                <LogOut size={20} />
-              </span>
-              <span className="truncate">{t('nav.logout')}</span>
-            </button>
-          </div>
+          <h3 className="px-3 pt-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2">Outros</h3>
+          {otherItems.map(item => (
+            <SidebarItem key={item.to} {...item} currentPath={currentPath} onClick={toggleSidebar} />
+          ))}
+        </nav>
+
+        <div className="mt-auto border-t border-gray-200 p-4 dark:border-gray-800">
+          <p className="text-center text-xs text-gray-500 dark:text-gray-400">
+            © {new Date().getFullYear()} Vida Segura.
+            <br />
+            Todos os direitos reservados.
+          </p>
         </div>
       </aside>
     </>
@@ -175,3 +111,4 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
 };
 
 export default Sidebar;
+
