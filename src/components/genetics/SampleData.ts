@@ -85,14 +85,14 @@ export const conceptualMapNodes = [
 ];
 
 export const conceptualMapEdges = [
-  { source: "brca1", target: "dna_repair", label: "regula" },
-  { source: "brca2", target: "dna_repair", label: "participa" },
-  { source: "brca1", target: "cancer_mama", label: "mutação aumenta risco", type: "dashed" },
-  { source: "brca1", target: "cancer_ovario", label: "mutação aumenta risco", type: "dashed" },
-  { source: "tp53", target: "apoptosis", label: "induz" },
-  { source: "tp53", target: "cell_cycle", label: "regula" },
-  { source: "dna_repair", target: "tumor_suppression", label: "contribui" },
-  { source: "apoptosis", target: "tumor_suppression", label: "contribui" },
-  { source: "tp53", target: "cancer_mama", label: "mutação relacionada", type: "dashed" },
-  { source: "brca2", target: "brca1", label: "interage" }
+  { source: "brca1", target: "dna_repair", label: "regula", type: "solid" as const },
+  { source: "brca2", target: "dna_repair", label: "participa", type: "solid" as const },
+  { source: "brca1", target: "cancer_mama", label: "mutação aumenta risco", type: "dashed" as const },
+  { source: "brca1", target: "cancer_ovario", label: "mutação aumenta risco", type: "dashed" as const },
+  { source: "tp53", target: "apoptosis", label: "induz", type: "solid" as const },
+  { source: "tp53", target: "cell_cycle", label: "regula", type: "solid" as const },
+  { source: "dna_repair", target: "tumor_suppression", label: "contribui", type: "solid" as const },
+  { source: "apoptosis", target: "tumor_suppression", label: "contribui", type: "solid" as const },
+  { source: "tp53", target: "cancer_mama", label: "mutação relacionada", type: "dashed" as const },
+  { source: "brca2", target: "brca1", label: "interage", type: "solid" as const }
 ];

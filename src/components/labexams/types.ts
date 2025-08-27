@@ -22,6 +22,8 @@ export interface LabExam {
   provider: string;
   doctor: string;
   status: 'normal' | 'warning' | 'critical';
+  summary?: string; // Add summary as optional
+  reportUrl?: string; // Add reportUrl as optional
   imageUrl?: string;
   scanned: boolean;
   verified: boolean;

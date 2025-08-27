@@ -5,49 +5,70 @@
  
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
+    /* Nova identidade MedWallet - cores de fundo escuras */
+    --background: 210 20% 8%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 210 15% 12%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 210 15% 12%;
     --popover-foreground: 0 0% 98%;
-    --primary: 24 95% 53%;
+    
+    /* Tons de laranja como destaque */
+    --primary: 18 100% 50%;  /* #ff6600 */
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
+    --primary-light: 20 100% 60%;  /* #ff8533 */
+    --primary-dark: 30 100% 20%;   /* #6c5200 */
+    
+    --secondary: 210 15% 20%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 24 95% 40%;
+    --muted: 210 10% 25%;
+    --muted-foreground: 210 5% 65%;
+    --accent: 20 100% 60%;  /* #ff8533 */
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    
+    /* Cores de estado para feedback */
+    --destructive: 0 75% 55%;     /* #ff4336 */
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 24 65% 50%;
+    --success: 142 76% 36%;       /* #4caf50 */
+    --warning: 45 100% 51%;       /* #ff9800 */
+    --error: 4 90% 58%;           /* #f44336 */
+    
+    --border: 210 15% 20%;
+    --input: 210 15% 15%;
+    --ring: 18 100% 50%;
     --radius: 0.5rem;
-    --medical: 24 95% 53%;
+    --medical: 18 100% 50%;
   }
  
   .light {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 210 20% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 210 20% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 24 95% 53%;
+    --popover-foreground: 210 20% 8%;
+    
+    --primary: 18 100% 50%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 24 95% 40%;
+    --primary-light: 20 100% 60%;
+    --primary-dark: 30 100% 20%;
+    
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 210 20% 10%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 210 10% 45%;
+    --accent: 20 100% 60%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
+    
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 24 65% 50%;
+    --success: 142 76% 36%;
+    --warning: 45 100% 51%;
+    --error: 4 90% 58%;
+    
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 18 100% 50%;
   }
 }
 
