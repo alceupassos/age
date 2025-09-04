@@ -16,9 +16,7 @@ import {
   ArrowRight,
   Heart,
   Brain,
-  Stethoscope,
-  CreditCard,
-  Star
+  Stethoscope
 } from 'lucide-react';
 
 const LandingPage = () => {
@@ -36,19 +34,34 @@ const LandingPage = () => {
 
   const features = [
     {
-      icon: <Shield className="h-12 w-12" />,
-      title: "Secure Data",
-      description: "Mean prisidek do iseres deled vierjents"
+      icon: <Shield className="h-8 w-8" />,
+      title: "Segurança Total",
+      description: "Dados criptografados e protegidos com tecnologia blockchain"
     },
     {
-      icon: <Calendar className="h-12 w-12" />,
-      title: "Easy Scheduling", 
-      description: "Easy et sita em pivicta dells Menifeats"
+      icon: <Calendar className="h-8 w-8" />,
+      title: "Agendamento Fácil",
+      description: "Marque consultas e exames de forma rápida e intuitiva"
     },
     {
-      icon: <CreditCard className="h-12 w-12" />,
-      title: "Unified Payments",
-      description: "Mean pentey altre oumie tomel biemheats"
+      icon: <FileText className="h-8 w-8" />,
+      title: "Prontuário Digital",
+      description: "Todos os seus dados médicos organizados em um só lugar"
+    },
+    {
+      icon: <Activity className="h-8 w-8" />,
+      title: "Monitoramento",
+      description: "Acompanhe suas métricas de saúde em tempo real"
+    },
+    {
+      icon: <Users className="h-8 w-8" />,
+      title: "Acesso Controlado",
+      description: "Compartilhe informações com médicos de forma segura"
+    },
+    {
+      icon: <Smartphone className="h-8 w-8" />,
+      title: "QR de Emergência",
+      description: "Acesso rápido aos dados vitais em situações críticas"
     }
   ];
 
@@ -91,102 +104,114 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-hero">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-secondary/80 border-b border-border">
-        <div className="container mx-auto flex items-center justify-between px-6 py-4">
+      <header className="navbar fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-secondary-bg/80">
+        <div className="container mx-auto flex items-center justify-between px-4">
           <div className="flex items-center">
-            <div className="bg-primary rounded-lg p-2 mr-3">
-              <span className="text-white font-bold text-lg">M</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">MedWallet</span>
+            <img 
+              src="/lovable-uploads/f328f86f-9e20-428c-b571-91f861610d33.png" 
+              alt="MedWallet Logo" 
+              className="h-10 w-auto"
+            />
+            <span className="ml-3 text-xl font-bold text-primary">MedWallet</span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors underline">Home</a>
-            <a href="#features" className="text-foreground hover:text-primary transition-colors">Features</a>
-            <a href="#pricing" className="text-foreground hover:text-primary transition-colors">Pricing</a>
-            <a href="#faq" className="text-foreground hover:text-primary transition-colors">FAQ</a>
+            <a href="#features" className="nav-item">Recursos</a>
+            <a href="#services" className="nav-item">Serviços</a>
+            <a href="#about" className="nav-item">Sobre</a>
+            <a href="#contact" className="nav-item">Contato</a>
           </nav>
           
           <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
             <Button
-              onClick={handleGetStarted}
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full"
+              onClick={handleSkipToDemo}
+              variant="outline"
+              size="sm"
+              className="border-medium-grey text-light-grey hover:bg-light-orange hover:text-white transition-smooth"
             >
-              Sign In
+              Ver Demo
             </Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section 
-        className="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden bg-gradient-to-br from-background via-secondary to-background"
-      >
-        {/* Background pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,111,60,0.3),transparent_70%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(0,169,157,0.2),transparent_70%)]"></div>
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center pt-20 px-4">
+        {/* Background overlay for better text readability */}
+        <div className="absolute inset-0 bg-primary-bg/60"></div>
         
-        <div className="container mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Your Health, Unified.{' '}
-                <br />
-                <span className="text-primary">Your Wallet, Smarter</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-lg">
-                Manage appointments, prescriptions, and payments: 
-                seamless with MedWallet
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={handleGetStarted} 
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg font-semibold rounded-full"
-                >
-                  Get Started Free
-                </Button>
-              </div>
+        <div className="relative z-10 text-center max-w-4xl mx-auto">
+          <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            Sua Saúde,{' '}
+            <span className="text-gradient-orange">Unificada</span>
+          </h1>
+          <p className="text-xl lg:text-2xl text-light-grey max-w-2xl mx-auto mb-8">
+            A plataforma mais segura e moderna para gerenciar toda sua saúde digital em um só lugar
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button 
+              onClick={handleGetStarted} 
+              size="lg"
+              className="bg-gradient-orange hover:shadow-orange text-white px-8 py-4 text-lg font-semibold transition-smooth"
+            >
+              Começar Agora
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+              onClick={handleSkipToDemo}
+              variant="outline" 
+              size="lg"
+              className="border-light-grey text-light-grey hover:bg-light-orange hover:text-white hover:border-light-orange px-8 py-4 text-lg transition-smooth"
+            >
+              Explorar Demo
+            </Button>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="flex flex-wrap justify-center items-center gap-8 text-light-grey/80">
+            <div className="flex items-center gap-2">
+              <Shield className="h-5 w-5 text-success" />
+              <span>100% Seguro</span>
             </div>
-            
-            {/* Right side with decorative elements */}
-            <div className="hidden lg:flex items-center justify-center">
-              <div className="relative">
-                <div className="w-80 h-80 bg-gradient-to-br from-primary/20 to-success/20 rounded-full blur-3xl"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Shield className="w-32 h-32 text-primary" />
-                </div>
-              </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-success" />
+              <span>LGPD Compliant</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Users className="h-5 w-5 text-success" />
+              <span>+10k Usuários</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Key Features Section */}
-      <section id="features" className="py-20 px-6 bg-secondary">
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 bg-secondary-bg">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">
-              Key Features
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Recursos <span className="text-gradient-orange">Inovadores</span>
             </h2>
+            <p className="text-xl text-light-grey max-w-2xl mx-auto">
+              Tecnologia de ponta para uma experiência única em saúde digital
+            </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="bg-card border-border text-center p-6 hover:shadow-lg transition-all">
-                <CardContent className="space-y-4">
-                  <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
-                    <div className="text-primary">
-                      {feature.icon}
-                    </div>
+              <Card key={index} className="bg-gradient-card border-medium-grey shadow-card hover:shadow-orange transition-smooth">
+                <CardHeader className="text-center">
+                  <div className="mx-auto mb-4 text-primary">
+                    {feature.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-card-foreground">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-light-grey text-center">
                     {feature.description}
-                  </p>
+                  </CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -194,83 +219,175 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-20 px-6 bg-background">
+      {/* Services Section */}
+      <section id="services" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">
-              Trust
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Nossos <span className="text-gradient-orange">Serviços</span>
             </h2>
+            <p className="text-xl text-light-grey max-w-2xl mx-auto">
+              Acesso simplificado a todos os serviços de saúde em uma única plataforma
+            </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <Card className="bg-primary/10 border-primary/20 p-8">
-              <CardContent className="space-y-6">
-                <div className="text-6xl text-primary">"</div>
-                <p className="text-lg text-card-foreground">
-                  MedWallet transformed how I manage my family's health. It's indispensable.
-                </p>
-                <div className="text-sm text-muted-foreground">
-                  — Sarah K., MedWallet User
-                </div>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="bg-gradient-card border-medium-grey shadow-card hover:shadow-orange transition-smooth group">
+                <CardHeader className="text-center">
+                  <div className="mx-auto mb-4 text-primary group-hover:text-light-orange transition-smooth">
+                    {service.icon}
+                  </div>
+                  <CardTitle className="text-lg text-white">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-light-grey mb-4">
+                    {service.description}
+                  </CardDescription>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="border-primary text-primary hover:bg-primary hover:text-white transition-smooth"
+                  >
+                    {service.action}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 px-4 bg-secondary-bg">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-white mb-6">
+                Por que escolher o <span className="text-gradient-orange">MedWallet</span>?
+              </h2>
+              <p className="text-xl text-light-grey mb-8">
+                Transformamos a gestão da sua saúde com tecnologia avançada e design centrado no usuário.
+              </p>
+              
+              <div className="grid gap-4">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <CheckCircle className="h-6 w-6 text-success flex-shrink-0" />
+                    <span className="text-light-grey">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
             
-            <div className="space-y-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center">
-                  <Star className="h-8 w-8 text-success" />
+            <div className="relative">
+              <div className="bg-gradient-card p-8 rounded-lg shadow-card">
+                <div className="text-center">
+                  <div className="text-5xl font-bold text-primary mb-2">+10k</div>
+                  <div className="text-light-grey">Usuários Ativos</div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">HEALTHCARE</h3>
-                  <p className="text-sm text-muted-foreground">Comprehensive Healthcare</p>
+                <div className="mt-8 grid grid-cols-2 gap-4 text-center">
+                  <div>
+                    <div className="text-2xl font-bold text-success">99.9%</div>
+                    <div className="text-sm text-light-grey">Uptime</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-success">24/7</div>
+                    <div className="text-sm text-light-grey">Suporte</div>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-8 w-8 text-success" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">HEALTHCARE</h3>
-                  <p className="text-sm text-muted-foreground">Best in Class</p>
-                </div>
-              </div>
-              
-              <div className="flex space-x-4 mt-8">
-                <Button 
-                  variant="outline"
-                  className="border-border text-foreground hover:bg-muted"
-                >
-                  Learn More
-                </Button>
-                <Button 
-                  className="bg-primary hover:bg-primary/90 text-white"
-                >
-                  Download Now
-                </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Pronto para revolucionar sua <span className="text-gradient-orange">saúde digital</span>?
+            </h2>
+            <p className="text-xl text-light-grey mb-8">
+              Junte-se a milhares de usuários que já confiam no MedWallet para gerenciar sua saúde.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                onClick={handleGetStarted} 
+                size="lg"
+                className="bg-gradient-orange hover:shadow-orange text-white px-8 py-4 text-lg font-semibold transition-smooth"
+              >
+                Começar Gratuitamente
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                onClick={handleSkipToDemo}
+                variant="outline" 
+                size="lg"
+                className="border-light-grey text-light-grey hover:bg-light-orange hover:text-white hover:border-light-orange px-8 py-4 text-lg transition-smooth"
+              >
+                Ver Demonstração
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="py-12 px-6 bg-secondary border-t border-border">
+      <footer className="py-12 px-4 bg-dark-grey border-t border-medium-grey">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center">
-              <div className="bg-primary rounded-lg p-2 mr-3">
-                <span className="text-white font-bold text-lg">M</span>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <img 
+                  src="/lovable-uploads/f328f86f-9e20-428c-b571-91f861610d33.png" 
+                  alt="MedWallet Logo" 
+                  className="h-8 w-auto"
+                />
+                <span className="ml-2 text-lg font-bold text-primary">MedWallet</span>
               </div>
-              <span className="text-lg font-bold text-foreground">MedWallet</span>
-              <span className="ml-2 text-sm text-muted-foreground">by Angra Saúde</span>
+              <p className="text-light-grey text-sm">
+                Sua saúde, nossa prioridade. Tecnologia que cuida de você.
+              </p>
             </div>
             
-            <nav className="flex space-x-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
-            </nav>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Recursos</h4>
+              <ul className="space-y-2 text-sm text-light-grey">
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Prontuário Digital</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Agendamentos</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Exames</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">QR Emergência</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-white mb-4">Suporte</h4>
+              <ul className="space-y-2 text-sm text-light-grey">
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Central de Ajuda</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Contato</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Termos de Uso</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Privacidade</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-white mb-4">Empresa</h4>
+              <ul className="space-y-2 text-sm text-light-grey">
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Sobre Nós</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Carreiras</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Blog</a></li>
+                <li><a href="#" className="hover:text-light-orange transition-smooth">Imprensa</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-medium-grey mt-8 pt-8 text-center">
+            <p className="text-light-grey text-sm">
+              © 2024 MedWallet - Angra Saúde. Todos os direitos reservados.
+            </p>
           </div>
         </div>
       </footer>
