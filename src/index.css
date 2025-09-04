@@ -1,59 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  /* MedWallet New Design System - Angra Saúde */
-  --primary-background: 14 31 61; /* #0E1F3D */
-  --secondary-background: 18 39 79; /* #12274F */
-  --dark-grey: 31 31 31; /* #1F1F1F */
-  --medium-grey: 44 44 44; /* #2C2C2C */
-  --light-grey: 196 196 196; /* #C4C4C4 */
-  --highlight-green: 0 169 157; /* #00A99D */
-  --primary-orange: 255 111 60; /* #FF6F3C */
-  --light-orange: 255 138 92; /* #FF8A5C */
-  --alert-red: 255 76 76; /* #FF4C4C */
-  
-  /* Semantic Color Mappings */
-  --background: var(--primary-background);
-  --foreground: var(--light-grey);
-  --primary: var(--primary-orange);
-  --primary-foreground: 255 255 255;
-  --secondary: var(--secondary-background);
-  --secondary-foreground: var(--light-grey);
-  --muted: var(--medium-grey);
-  --muted-foreground: var(--light-grey);
-  --accent: var(--light-orange);
-  --accent-foreground: 255 255 255;
-  --success: var(--highlight-green);
-  --success-foreground: 255 255 255;
-  --destructive: var(--alert-red);
-  --destructive-foreground: 255 255 255;
-  
-  /* UI Components */
-  --card: var(--secondary-background);
-  --card-foreground: var(--light-grey);
-  --popover: var(--secondary-background);
-  --popover-foreground: var(--light-grey);
-  --border: var(--medium-grey);
-  --input: var(--dark-grey);
-  --ring: var(--primary-orange);
-  
-  /* Radius */
-  --radius: 0.5rem;
-  
-  /* Gradients */
-  --gradient-hero: linear-gradient(135deg, hsl(var(--primary-background)), hsl(var(--secondary-background)));
-  --gradient-orange: linear-gradient(135deg, hsl(var(--primary-orange)), hsl(var(--light-orange)));
-  --gradient-card: linear-gradient(145deg, hsl(var(--secondary-background)), hsl(var(--dark-grey)));
-  
-  /* Shadows */
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-  --shadow-orange: 0 0 40px hsla(var(--primary-orange), 0.2);
-  
-  /* Animation */
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ 
+@layer base {
+  :root {
+    /* Nova identidade MedWallet - cores de fundo escuras */
+    --background: 210 20% 8%;
+    --foreground: 0 0% 98%;
+    --card: 210 15% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 15% 12%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Tons de laranja como destaque */
+    --primary: 18 100% 50%;  /* #ff6600 */
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 20 100% 60%;  /* #ff8533 */
+    --primary-dark: 30 100% 20%;   /* #6c5200 */
+    
+    --secondary: 210 15% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 210 10% 25%;
+    --muted-foreground: 210 5% 65%;
+    --accent: 20 100% 60%;  /* #ff8533 */
+    --accent-foreground: 0 0% 98%;
+    
+    /* Cores de estado para feedback */
+    --destructive: 0 75% 55%;     /* #ff4336 */
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 36%;       /* #4caf50 */
+    --warning: 45 100% 51%;       /* #ff9800 */
+    --error: 4 90% 58%;           /* #f44336 */
+    
+    --border: 210 15% 20%;
+    --input: 210 15% 15%;
+    --ring: 18 100% 50%;
+    --radius: 0.5rem;
+    --medical: 18 100% 50%;
+  }
+ 
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 210 20% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 8%;
+    
+    --primary: 18 100% 50%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 20 100% 60%;
+    --primary-dark: 30 100% 20%;
+    
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 210 20% 10%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 210 10% 45%;
+    --accent: 20 100% 60%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 36%;
+    --warning: 45 100% 51%;
+    --error: 4 90% 58%;
+    
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 18 100% 50%;
+  }
 }
 
 @layer base {
@@ -62,64 +78,37 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: hsl(var(--primary));
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-@layer utilities {
-  .text-gradient-orange {
-    background: linear-gradient(135deg, hsl(var(--primary-orange)), hsl(var(--light-orange)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+@layer components {
+  .glass-card {
+    @apply bg-gray-900 border border-gray-800 bg-opacity-80 backdrop-blur-sm;
   }
   
-  .bg-gradient-hero {
-    background: var(--gradient-hero);
+  .medical-gradient {
+    @apply bg-gradient-to-br from-orange-600 to-orange-500;
   }
   
-  .bg-gradient-orange {
-    background: var(--gradient-orange);
+  .text-gradient-medical {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
   
-  .bg-gradient-card {
-    background: var(--gradient-card);
+  .animate-fade-in {
+    @apply animate-in fade-in duration-500;
   }
   
-  .shadow-card {
-    box-shadow: var(--shadow-card);
+  .animate-slide-up {
+    @apply animate-in slide-in-from-bottom-4 fade-in duration-500;
   }
   
-  .shadow-orange {
-    box-shadow: var(--shadow-orange);
+  .animate-scale-in {
+    @apply animate-in zoom-in-95 fade-in duration-500;
   }
-  
-  .transition-smooth {
-    transition: var(--transition-smooth);
-  }
-  
-  .navbar {
-    background-color: hsl(var(--secondary-background));
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .nav-item {
-    color: hsl(var(--light-grey));
-    margin-right: 20px;
-    text-decoration: none;
-    transition: var(--transition-smooth);
-  }
-  
-  .nav-item:hover {
-    color: hsl(var(--light-orange));
-  }
+}
+
+/* For demo purposes only */
+.font-display {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
