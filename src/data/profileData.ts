@@ -26,21 +26,21 @@ export const profileSections = [
     id: 'conditions',
     title: 'Condições Médicas',
     fields: [
-      { 
-        id: 'chronic', 
-        label: 'Condições Crônicas', 
+      {
+        id: 'chronic',
+        label: 'Condições Crônicas',
         value: ['Hipertensão (diagnosticada em 2015)', 'Diabetes Tipo 2 (diagnosticada em 2018)'],
         isArray: true
       },
-      { 
-        id: 'allergies', 
-        label: 'Alergias', 
+      {
+        id: 'allergies',
+        label: 'Alergias',
         value: ['Penicilina - Grave', 'Amendoim - Moderada', 'Poeira - Leve'],
         isArray: true
       },
-      { 
-        id: 'surgeries', 
-        label: 'Cirurgias Anteriores', 
+      {
+        id: 'surgeries',
+        label: 'Cirurgias Anteriores',
         value: ['Apendicectomia (2010)', 'Artroscopia no Joelho (2019)'],
         isArray: true
       }
@@ -50,19 +50,19 @@ export const profileSections = [
     id: 'medications',
     title: 'Medicamentos Atuais',
     fields: [
-      { 
-        id: 'prescriptions', 
-        label: 'Prescrições', 
+      {
+        id: 'prescriptions',
+        label: 'Prescrições',
         value: [
-          'Lisinopril 10mg - Uma vez ao dia', 
-          'Metformina 500mg - Duas vezes ao dia', 
+          'Lisinopril 10mg - Uma vez ao dia',
+          'Metformina 500mg - Duas vezes ao dia',
           'Atorvastatina 20mg - Uma vez ao dia antes de dormir'
         ],
         isArray: true
       },
-      { 
-        id: 'supplements', 
-        label: 'Suplementos', 
+      {
+        id: 'supplements',
+        label: 'Suplementos',
         value: ['Multivitamínico - Uma vez ao dia', 'Vitamina D3 2000 UI - Uma vez ao dia'],
         isArray: true
       }
@@ -72,12 +72,12 @@ export const profileSections = [
     id: 'family',
     title: 'Histórico Familiar',
     fields: [
-      { 
-        id: 'familyConditions', 
-        label: 'Condições Médicas Familiares', 
+      {
+        id: 'familyConditions',
+        label: 'Condições Médicas Familiares',
         value: [
-          'Pai: Hipertensão, Doença Arterial Coronariana', 
-          'Mãe: Diabetes Tipo 2', 
+          'Pai: Hipertensão, Doença Arterial Coronariana',
+          'Mãe: Diabetes Tipo 2',
           'Irmã: Nenhuma'
         ],
         isArray: true
@@ -95,9 +95,9 @@ export const medicalRecords = [
 
 // Dados para medicamentos - updated to include the required 'status' property with correct type
 export const medications = [
-  { id: "med1", name: "Lisinopril", dose: "10mg", frequency: "Uma vez ao dia", startDate: "15/01/2022", endDate: "Contínuo", status: "Ativo" as "Ativo" },
-  { id: "med2", name: "Metformina", dose: "500mg", frequency: "Duas vezes ao dia", startDate: "10/03/2022", endDate: "Contínuo", status: "Ativo" as "Ativo" },
-  { id: "med3", name: "Atorvastatina", dose: "20mg", frequency: "Uma vez ao dia antes de dormir", startDate: "05/08/2023", endDate: "Contínuo", status: "Ativo" as "Ativo" },
+  { id: "med1", name: "Lisinopril", dose: "10mg", frequency: "Uma vez ao dia", startDate: "15/01/2022", endDate: "Contínuo", status: "Ativo" as const },
+  { id: "med2", name: "Metformina", dose: "500mg", frequency: "Duas vezes ao dia", startDate: "10/03/2022", endDate: "Contínuo", status: "Ativo" as const },
+  { id: "med3", name: "Atorvastatina", dose: "20mg", frequency: "Uma vez ao dia antes de dormir", startDate: "05/08/2023", endDate: "Contínuo", status: "Ativo" as const },
 ];
 
 // Dados para consultas
@@ -109,11 +109,12 @@ export const appointments = [
 
 // Dados para métricas de saúde
 export const healthMetrics = [
-  { name: "Pressão Arterial", value: "130/85", date: "10/11/2023", status: "Alerta" as "Normal" | "Alerta" | "Crítico" },
-  { name: "Glicose", value: "110 mg/dL", date: "10/11/2023", status: "Normal" as "Normal" | "Alerta" | "Crítico" },
-  { name: "IMC", value: "24.7", date: "10/11/2023", status: "Normal" as "Normal" | "Alerta" | "Crítico" },
-  { name: "Colesterol Total", value: "195 mg/dL", date: "22/09/2023", status: "Normal" as "Normal" | "Alerta" | "Crítico" },
+  { name: "Pressão Arterial", value: "130/85", date: "10/11/2023", status: "Alerta" as const },
+  { name: "Glicose", value: "110 mg/dL", date: "10/11/2023", status: "Normal" as const },
+  { name: "IMC", value: "24.7", date: "10/11/2023", status: "Normal" as const },
+  { name: "Colesterol Total", value: "195 mg/dL", date: "22/09/2023", status: "Normal" as const },
 ];
+
 
 // Dados para registros de acesso
 export const accessLogs = [

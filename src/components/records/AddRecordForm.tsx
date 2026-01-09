@@ -14,8 +14,9 @@ import { cn } from "@/lib/utils";
 import AppButton from "@/components/ui/AppButton";
 
 interface AddRecordFormProps {
-  onAddRecord: (record: any) => void;
+  onAddRecord: (record: Record<string, unknown>) => void;
 }
+
 
 const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
   const [open, setOpen] = useState(false);
@@ -24,7 +25,7 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const formData = new FormData(e.currentTarget);
     const recordData = {
       id: Date.now().toString(),
@@ -44,7 +45,7 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
       })),
       lastModified: format(new Date(), 'dd/MM/yyyy'),
     };
-    
+
     onAddRecord(recordData);
     setOpen(false);
     setDate(undefined);
@@ -72,7 +73,7 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
         <DialogHeader>
           <DialogTitle>Adicionar Novo Prontuário</DialogTitle>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4 py-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -126,28 +127,28 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
               <Label htmlFor="specialty">Especialidade</Label>
               <Input id="specialty" name="specialty" placeholder="Especialidade médica" />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="institution">Instituição</Label>
               <Input id="institution" name="institution" placeholder="Hospital ou clínica" />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="diagnosis">Diagnóstico</Label>
               <Input id="diagnosis" name="diagnosis" placeholder="Diagnóstico principal" />
             </div>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="notes">Observações</Label>
-            <Textarea 
-              id="notes" 
-              name="notes" 
+            <Textarea
+              id="notes"
+              name="notes"
               placeholder="Detalhes sobre o atendimento, tratamentos recomendados, etc."
               rows={4}
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label>Anexos</Label>
             <div className="border border-dashed rounded-md p-6 flex flex-col items-center justify-center">
@@ -158,8 +159,8 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
                 multiple
                 onChange={handleFileChange}
               />
-              <Label 
-                htmlFor="file-upload" 
+              <Label
+                htmlFor="file-upload"
                 className="flex flex-col items-center cursor-pointer"
               >
                 <Upload className="h-10 w-10 text-muted-foreground mb-2" />
@@ -169,14 +170,14 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
                 </span>
               </Label>
             </div>
-            
+
             {files.length > 0 && (
               <div className="mt-4 space-y-2">
                 <Label>Arquivos selecionados</Label>
                 <div className="space-y-2">
                   {files.map((file, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className="flex items-center justify-between p-2 bg-muted rounded-md"
                     >
                       <div className="flex items-center">
@@ -185,10 +186,10 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
                           ({(file.size / 1024).toFixed(0)} KB)
                         </span>
                       </div>
-                      <Button 
+                      <Button
                         type="button"
-                        variant="ghost" 
-                        size="sm" 
+                        variant="ghost"
+                        size="sm"
                         onClick={() => removeFile(index)}
                       >
                         <X className="h-4 w-4" />
@@ -199,7 +200,7 @@ const AddRecordForm = ({ onAddRecord }: AddRecordFormProps) => {
               </div>
             )}
           </div>
-          
+
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => setOpen(false)}>
               Cancelar

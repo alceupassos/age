@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { 
+import {
   ResponsiveContainer,
   BarChart,
   Bar,
@@ -10,7 +10,8 @@ import {
   Cell,
   LabelList,
   Legend,
-  Tooltip
+  Tooltip,
+  TooltipProps
 } from 'recharts';
 import { Dna } from 'lucide-react';
 
@@ -28,7 +29,8 @@ interface GeneticInfographicProps {
   type: 'allele' | 'risk' | 'genotype';
 }
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -49,7 +51,7 @@ const GeneticInfographic: React.FC<GeneticInfographicProps> = ({
 }) => {
   // Choose different visualizations based on the type
   const renderVisualization = () => {
-    switch(type) {
+    switch (type) {
       case 'allele':
         return (
           <ResponsiveContainer width="100%" height={300}>
@@ -71,7 +73,7 @@ const GeneticInfographic: React.FC<GeneticInfographicProps> = ({
             </BarChart>
           </ResponsiveContainer>
         );
-        
+
       case 'risk':
         return (
           <ResponsiveContainer width="100%" height={300}>
@@ -92,14 +94,14 @@ const GeneticInfographic: React.FC<GeneticInfographicProps> = ({
             </BarChart>
           </ResponsiveContainer>
         );
-        
+
       case 'genotype':
         return (
           <div className="flex flex-col items-center justify-center space-y-6 py-4">
             <div className="flex justify-center items-center space-x-12">
               {data.map((item, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 shadow-sm"
                 >
                   <Dna size={36} className={item.color || "text-purple-500"} />

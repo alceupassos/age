@@ -1,15 +1,17 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  ResponsiveContainer, 
-  ScatterChart, 
-  Scatter, 
-  XAxis, 
-  YAxis, 
+import {
+  ResponsiveContainer,
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
   ZAxis,
   Tooltip,
+  TooltipProps,
   CartesianGrid,
+
   Legend,
   ReferenceLine
 } from 'recharts';
@@ -44,7 +46,8 @@ const getChromosomeColor = (chromosome: number): string => {
   return colors[chromosome % colors.length];
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -61,9 +64,9 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const ManhattanPlot: React.FC<ManhattanPlotProps> = ({ 
-  title, 
-  data, 
+const ManhattanPlot: React.FC<ManhattanPlotProps> = ({
+  title,
+  data,
   significanceThreshold = 7.3 // Default genome-wide significance threshold: -log10(5x10^-8)
 }) => {
   // Group data by chromosome for coloring
@@ -90,14 +93,14 @@ const ManhattanPlot: React.FC<ManhattanPlotProps> = ({
               margin={{ top: 20, right: 20, bottom: 40, left: 40 }}
             >
               <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-              <XAxis 
+              <XAxis
                 type="number"
                 dataKey="position"
                 name="Posição Genômica"
                 domain={['dataMin - 1000000', 'dataMax + 1000000']}
-                label={{ 
-                  value: 'Posição no Cromossomo (Mb)', 
-                  position: 'insideBottomRight', 
+                label={{
+                  value: 'Posição no Cromossomo (Mb)',
+                  position: 'insideBottomRight',
                   offset: -10,
                   fontSize: 12
                 }}
@@ -108,21 +111,21 @@ const ManhattanPlot: React.FC<ManhattanPlotProps> = ({
                 dataKey="logp"
                 name="-log10(p-valor)"
                 domain={[0, 'dataMax + 1']}
-                label={{ 
-                  value: '-log10(p-valor)', 
-                  angle: -90, 
+                label={{
+                  value: '-log10(p-valor)',
+                  angle: -90,
                   position: 'insideLeft',
                   fontSize: 12
                 }}
               />
-              <ZAxis 
+              <ZAxis
                 type="number"
                 dataKey="size"
                 range={[20, 100]}
                 domain={[0, 10]}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Legend 
+              <Legend
                 verticalAlign="top"
                 payload={chromosomeNumbers.map(chr => ({
                   value: `Chr ${chr}`,
@@ -131,13 +134,13 @@ const ManhattanPlot: React.FC<ManhattanPlotProps> = ({
                 }))}
                 wrapperStyle={{ paddingBottom: 10 }}
               />
-              <ReferenceLine 
-                y={significanceThreshold} 
-                stroke="red" 
+              <ReferenceLine
+                y={significanceThreshold}
+                stroke="red"
                 strokeDasharray="3 3"
-                label={{ 
-                  value: `Limiar de significância (p=5x10^-8)`, 
-                  position: 'right', 
+                label={{
+                  value: `Limiar de significância (p=5x10^-8)`,
+                  position: 'right',
                   fill: 'red',
                   fontSize: 11
                 }}

@@ -9,8 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Plus } from 'lucide-react';
 
 interface AddMetricFormProps {
-  onAddMetric: (data: any) => void;
+  onAddMetric: (data: Record<string, unknown>) => void;
 }
+
 
 const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
   const [selectedMetricType, setSelectedMetricType] = useState<string | null>(null);
@@ -30,11 +31,12 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
     const subscription = addForm.watch((value) => {
       setSelectedMetricType(value.metricType);
     });
-    
+
     return () => subscription.unsubscribe();
   }, [addForm]);
 
-  const getMetricUnit = (metricType) => {
+  const getMetricUnit = (metricType: string | null) => {
+
     switch (metricType) {
       case 'bloodPressure':
         return 'mmHg';
@@ -66,7 +68,7 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
             Registre um novo valor para uma de suas métricas de saúde
           </DialogDescription>
         </DialogHeader>
-        
+
         <Form {...addForm}>
           <form onSubmit={addForm.handleSubmit(onAddMetric)} className="space-y-4">
             <FormField
@@ -75,8 +77,8 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tipo de Métrica</FormLabel>
-                  <Select 
-                    onValueChange={field.onChange} 
+                  <Select
+                    onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
@@ -96,7 +98,7 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
                 </FormItem>
               )}
             />
-            
+
             {selectedMetricType === 'bloodPressure' ? (
               <>
                 <FormField
@@ -138,7 +140,7 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
                 )}
               />
             )}
-            
+
             <FormField
               control={addForm.control}
               name="date"
@@ -151,7 +153,7 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
                 </FormItem>
               )}
             />
-            
+
             <FormField
               control={addForm.control}
               name="notes"
@@ -164,7 +166,7 @@ const AddMetricForm = ({ onAddMetric }: AddMetricFormProps) => {
                 </FormItem>
               )}
             />
-            
+
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="outline">Cancelar</Button>

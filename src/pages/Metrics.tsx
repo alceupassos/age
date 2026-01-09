@@ -27,13 +27,13 @@ const Metrics = () => {
     primary: "heartRate",
     secondary: "bloodPressure"
   });
-  
+
   const correlationData = Array.from({ length: 14 }, (_, i) => ({
-    date: `${i+1}/06`,
+    date: `${i + 1}/06`,
     metric1Value: 75 + Math.random() * 10,
     metric2Value: 120 + Math.random() * 20
   }));
-  
+
   const healthGoals: HealthGoal[] = [
     {
       id: "1",
@@ -66,7 +66,7 @@ const Metrics = () => {
       status: "Em andamento"
     },
   ];
-  
+
   const availableMetrics = [
     { id: "heartRate", name: "Frequência Cardíaca" },
     { id: "bloodPressure", name: "Pressão Arterial" },
@@ -75,49 +75,50 @@ const Metrics = () => {
     { id: "steps", name: "Passos" },
     { id: "sleep", name: "Horas de Sono" }
   ];
-  
-  const onAddMetric = (data: any) => {
+
+  const onAddMetric = (data: Record<string, unknown>) => {
     toast({
       title: "Métrica adicionada",
-      description: `${data.metric}: ${data.value} ${data.unit}`,
+      description: `${String(data.metricType || 'Métrica')}: ${String(data.value || '')}`,
     });
   };
-  
+
+
   const handleImportMetrics = (source: string, metrics: string[]) => {
     toast({
       title: "Dados importados com sucesso",
       description: `Importados ${metrics.length} métricas de ${source}`,
     });
   };
-  
+
   const handleGenerateReport = () => {
     toast({
       title: "Relatório gerado",
       description: "O relatório foi gerado e está disponível para download",
     });
   };
-  
+
   const handleSetGoal = () => {
     toast({
       title: "Funcionalidade em desenvolvimento",
       description: "A definição de novas metas estará disponível em breve",
     });
   };
-  
+
   const handleSetAlert = () => {
     toast({
       title: "Funcionalidade em desenvolvimento",
       description: "A configuração de alertas estará disponível em breve",
     });
   };
-  
+
   const handleShareMetrics = () => {
     toast({
       title: "Funcionalidade em desenvolvimento",
       description: "O compartilhamento de métricas estará disponível em breve",
     });
   };
-  
+
   const handleCorrelationChange = (metricId: string, position: 'primary' | 'secondary') => {
     setSelectedCorrelation(prev => ({
       ...prev,
@@ -135,16 +136,16 @@ const Metrics = () => {
               Monitore seus indicadores de saúde e visualize tendências
             </p>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <AddMetricForm onAddMetric={onAddMetric} />
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-6">
           <div className="space-y-6">
             <MetricsSummary />
-            
+
             <Tabs defaultValue="blood-pressure" className="w-full">
               <TabsList className="w-full md:w-auto mb-4">
                 <TabsTrigger value="blood-pressure">Pressão Arterial</TabsTrigger>
@@ -152,30 +153,30 @@ const Metrics = () => {
                 <TabsTrigger value="heart-rate">Freq. Cardíaca</TabsTrigger>
                 <TabsTrigger value="weight">Peso</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="blood-pressure">
                 <BloodPressureChart data={bloodPressureData} />
               </TabsContent>
-              
+
               <TabsContent value="blood-glucose">
                 <GlucoseChart data={glucoseData} />
               </TabsContent>
-              
+
               <TabsContent value="heart-rate">
                 <HeartRateChart data={heartRateData} />
               </TabsContent>
-              
+
               <TabsContent value="weight">
                 <WeightChart data={weightData} />
               </TabsContent>
             </Tabs>
-            
+
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-              <MetricGoals 
-                goals={healthGoals} 
+              <MetricGoals
+                goals={healthGoals}
                 onAddGoal={handleSetGoal}
               />
-              
+
               <Card>
                 <CardHeader>
                   <CardTitle>Tendências Recentes</CardTitle>
@@ -198,7 +199,7 @@ const Metrics = () => {
                       </li>
                     </ul>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <h4 className="text-sm font-medium">Sugestões</h4>
                     <ul className="space-y-2">
@@ -213,7 +214,7 @@ const Metrics = () => {
                 </CardContent>
               </Card>
             </div>
-            
+
             <MetricCorrelation
               data={correlationData}
               metrics={availableMetrics}
@@ -223,7 +224,7 @@ const Metrics = () => {
               correlationDirection="positive"
             />
           </div>
-          
+
           <div className="space-y-6">
             <MetricsControlPanel
               onTimeRangeChange={setTimeRange}
@@ -232,7 +233,7 @@ const Metrics = () => {
               onSetAlert={handleSetAlert}
               onShareMetrics={handleShareMetrics}
             />
-            
+
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Últimas Medições</CardTitle>
@@ -250,7 +251,7 @@ const Metrics = () => {
                     </div>
                   </div>
                 ))}
-                
+
                 {bloodPressureData.slice(0, 2).map((data, idx) => (
                   <div key={idx} className="flex justify-between items-center p-2 text-sm border-b last:border-0">
                     <div>
@@ -263,13 +264,13 @@ const Metrics = () => {
                     </div>
                   </div>
                 ))}
-                
+
                 <Button variant="ghost" size="sm" className="w-full mt-2 text-xs">
                   Ver todas as medições
                 </Button>
               </CardContent>
             </Card>
-            
+
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Conectar Dispositivos</CardTitle>
@@ -284,7 +285,7 @@ const Metrics = () => {
                     Conectado
                   </div>
                 </div>
-                
+
                 <div className="flex items-start justify-between p-2 text-sm rounded-md border">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-red-500"></div>
@@ -294,7 +295,7 @@ const Metrics = () => {
                     Desconectado
                   </div>
                 </div>
-                
+
                 <Button variant="outline" size="sm" className="w-full mt-2" onClick={() => setImportModalOpen(true)}>
                   <Plus className="mr-2 h-4 w-4" />
                   Adicionar Dispositivo
@@ -304,8 +305,8 @@ const Metrics = () => {
           </div>
         </div>
       </div>
-      
-      <ImportMetricsModal 
+
+      <ImportMetricsModal
         open={importModalOpen}
         onOpenChange={setImportModalOpen}
         onImport={handleImportMetrics}
