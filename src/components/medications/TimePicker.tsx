@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import * as React from 'react';
 
 interface TimePickerProps {
   value: string;
@@ -8,28 +8,18 @@ interface TimePickerProps {
 }
 
 const TimePicker = ({ value, onChange, disabled = false }: TimePickerProps) => {
-  const [hours, setHours] = useState('00');
-  const [minutes, setMinutes] = useState('00');
-
-  useEffect(() => {
-    if (value) {
-      const [h, m] = value.split(':');
-      setHours(h);
-      setMinutes(m);
-    }
-  }, [value]);
+  const [h, m] = (value || '00:00').split(':');
+  const hours = h || '00';
+  const minutes = m || '00';
 
   const handleHoursChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newHours = e.target.value;
-    setHours(newHours);
-    onChange(`${newHours}:${minutes}`);
+    onChange(`${e.target.value}:${minutes}`);
   };
 
   const handleMinutesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newMinutes = e.target.value;
-    setMinutes(newMinutes);
-    onChange(`${hours}:${newMinutes}`);
+    onChange(`${hours}:${e.target.value}`);
   };
+
 
   return (
     <div className="flex items-center space-x-1">

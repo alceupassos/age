@@ -18,7 +18,7 @@ const translations = {
     'auth.email': 'E-mail',
     'auth.password': 'Senha',
     'auth.name': 'Nome completo',
-    
+
     // Navigation
     'nav.dashboard': 'Dashboard',
     'nav.profile': 'Perfil Médico',
@@ -33,7 +33,7 @@ const translations = {
     'nav.support': 'Suporte',
     'nav.manage': 'Gerenciar Acesso',
     'nav.logout': 'Sair',
-    
+
     // Emergency QR
     'emergency.title': 'QR Code de Emergência',
     'emergency.description': 'O QR Code de emergência permite que profissionais de saúde acessem suas informações médicas essenciais em caso de emergência.',
@@ -57,7 +57,7 @@ const translations = {
     'auth.email': 'Email',
     'auth.password': 'Password',
     'auth.name': 'Full name',
-    
+
     // Navigation
     'nav.dashboard': 'Dashboard',
     'nav.profile': 'Medical Profile',
@@ -72,7 +72,7 @@ const translations = {
     'nav.support': 'Support',
     'nav.manage': 'Manage Access',
     'nav.logout': 'Logout',
-    
+
     // Emergency QR
     'emergency.title': 'Emergency QR Code',
     'emergency.description': 'The emergency QR code allows healthcare professionals to access your essential medical information in case of emergency.',
@@ -96,7 +96,7 @@ const translations = {
     'auth.email': 'E-mail',
     'auth.password': 'Mot de passe',
     'auth.name': 'Nom complet',
-    
+
     // Navigation
     'nav.dashboard': 'Tableau de bord',
     'nav.profile': 'Profil médical',
@@ -111,7 +111,7 @@ const translations = {
     'nav.support': 'Support',
     'nav.manage': 'Gérer l\'accès',
     'nav.logout': 'Déconnexion',
-    
+
     // Emergency QR
     'emergency.title': 'Code QR d\'urgence',
     'emergency.description': 'Le code QR d\'urgence permet aux professionnels de la santé d\'accéder à vos informations médicales essentielles en cas d\'urgence.',
@@ -135,7 +135,7 @@ const translations = {
     'auth.email': 'Correo electrónico',
     'auth.password': 'Contraseña',
     'auth.name': 'Nombre completo',
-    
+
     // Navigation
     'nav.dashboard': 'Panel',
     'nav.profile': 'Perfil médico',
@@ -150,7 +150,7 @@ const translations = {
     'nav.support': 'Soporte',
     'nav.manage': 'Gestionar acceso',
     'nav.logout': 'Cerrar sesión',
-    
+
     // Emergency QR
     'emergency.title': 'Código QR de emergencia',
     'emergency.description': 'El código QR de emergencia permite a los profesionales de la salud acceder a su información médica esencial en caso de emergencia.',
@@ -171,11 +171,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('pt');
-  
+
   const t = (key: string) => {
     return translations[language][key as keyof typeof translations[typeof language]] || key;
   };
-  
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
@@ -183,7 +183,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   );
 };
 
+/* eslint-disable react-refresh/only-export-components */
 export const useLanguage = () => {
+
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');

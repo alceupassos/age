@@ -15,24 +15,30 @@ import MetricGoals from '@/components/metrics/MetricGoals';
 import MetricCorrelation from '@/components/metrics/MetricCorrelation';
 import MetricsControlPanel from '@/components/metrics/MetricsControlPanel';
 import ImportMetricsModal from '@/components/metrics/ImportMetricsModal';
+import AddGoalModal from '@/components/metrics/AddGoalModal';
+import SetAlertModal from '@/components/metrics/SetAlertModal';
 import { HealthGoal, HealthMetric } from '@/components/profile/types';
 import { bloodPressureData, glucoseData, heartRateData, weightData } from '@/data/metricsData';
 import { Download, FileUp, BarChart3, Goal, Share2, Bell, Plus } from 'lucide-react';
+
 
 const Metrics = () => {
   const { toast } = useToast();
   const [timeRange, setTimeRange] = useState("7d");
   const [importModalOpen, setImportModalOpen] = useState(false);
+  const [isAddGoalModalOpen, setIsAddGoalModalOpen] = useState(false);
+  const [isSetAlertModalOpen, setIsSetAlertModalOpen] = useState(false);
   const [selectedCorrelation, setSelectedCorrelation] = useState({
     primary: "heartRate",
     secondary: "bloodPressure"
   });
 
-  const correlationData = Array.from({ length: 14 }, (_, i) => ({
+  const correlationData = useState(() => Array.from({ length: 14 }, (_, i) => ({
     date: `${i + 1}/06`,
     metric1Value: 75 + Math.random() * 10,
     metric2Value: 120 + Math.random() * 20
-  }));
+  })))[0];
+
 
   const healthGoals: HealthGoal[] = [
     {
@@ -99,18 +105,27 @@ const Metrics = () => {
   };
 
   const handleSetGoal = () => {
-    toast({
-      title: "Funcionalidade em desenvolvimento",
-      description: "A definição de novas metas estará disponível em breve",
-    });
+    setIsAddGoalModalOpen(true);
   };
 
   const handleSetAlert = () => {
+    setIsSetAlertModalOpen(true);
+  };
+
+  const onAddGoal = (goal: any) => {
     toast({
-      title: "Funcionalidade em desenvolvimento",
-      description: "A configuração de alertas estará disponível em breve",
+      title: "Meta Definida",
+      description: `Meta de ${goal.metricName} para ${goal.targetValue} salva com sucesso!`,
     });
   };
+
+  const onSetAlert = (alert: any) => {
+    toast({
+      title: "Alerta Configurado",
+      description: `Alerta para ${alert.metricName} (${alert.condition === 'above' ? 'Acima de' : 'Abaixo de'} ${alert.value}) configurado.`,
+    });
+  };
+
 
   const handleShareMetrics = () => {
     toast({
@@ -239,7 +254,8 @@ const Metrics = () => {
                 <CardTitle className="text-base">Últimas Medições</CardTitle>
               </CardHeader>
               <CardContent className="p-3 space-y-2">
-                {heartRateData.slice(0, 3).map((data, idx) => (
+                {heartRateData.slice(0, 3).map((data: any, idx: number) => (
+
                   <div key={idx} className="flex justify-between items-center p-2 text-sm border-b last:border-0">
                     <div>
                       <div className="font-medium">Freq. Cardíaca</div>
@@ -252,7 +268,8 @@ const Metrics = () => {
                   </div>
                 ))}
 
-                {bloodPressureData.slice(0, 2).map((data, idx) => (
+                {bloodPressureData.slice(0, 2).map((data: any, idx: number) => (
+
                   <div key={idx} className="flex justify-between items-center p-2 text-sm border-b last:border-0">
                     <div>
                       <div className="font-medium">Pressão Arterial</div>
@@ -311,6 +328,19 @@ const Metrics = () => {
         onOpenChange={setImportModalOpen}
         onImport={handleImportMetrics}
       />
+
+      <AddGoalModal
+        open={isAddGoalModalOpen}
+        onOpenChange={setIsAddGoalModalOpen}
+        onAddGoal={onAddGoal}
+      />
+
+      <SetAlertModal
+        open={isSetAlertModalOpen}
+        onOpenChange={setIsSetAlertModalOpen}
+        onSetAlert={onSetAlert}
+      />
+
     </MainLayout>
   );
 };

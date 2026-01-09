@@ -17,7 +17,7 @@ interface NavbarProps {
 
 const Navbar = ({ toggleSidebar }: NavbarProps) => {
   const [isDark, setIsDark] = useState(document.documentElement.classList.contains('dark'));
-  
+
   const toggleTheme = () => {
     const newIsDark = !isDark;
     setIsDark(newIsDark);
@@ -28,10 +28,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
     }
   };
 
-  // Ensure theme is set on mount based on existing class
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-  }, []);
+
 
   return (
     <header className="fixed w-full h-16 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4">
@@ -45,11 +42,11 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
             <Menu size={20} />
             <span className="sr-only">Abrir menu</span>
           </button>
-          
+
           <Link to="/dashboard" className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/f328f86f-9e20-428c-b571-91f861610d33.png" 
-              alt="MedWallet Logo" 
+            <img
+              src="/lovable-uploads/f328f86f-9e20-428c-b571-91f861610d33.png"
+              alt="MedWallet Logo"
               className="h-10 w-auto"
             />
             <span className="hidden md:inline-block text-xl font-bold text-primary">
@@ -71,7 +68,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
 
         <div className="flex items-center space-x-2">
           <LanguageSwitcher />
-          
+
           <button
             type="button"
             className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 relative"
@@ -80,7 +77,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
             <span className="sr-only">Notificações</span>
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
-          
+
           <button
             type="button"
             className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -89,7 +86,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
             <span className="sr-only">Alternar tema</span>
           </button>
-          
+
           <Link
             to="/settings"
             className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -97,12 +94,12 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
             <Settings size={20} />
             <span className="sr-only">Configurações</span>
           </Link>
-          
+
           <button
             type="button"
             className="ml-2 flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
           >
-            JS 
+            JS
           </button>
         </div>
       </div>
